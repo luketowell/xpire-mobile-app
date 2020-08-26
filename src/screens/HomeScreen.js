@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import MainStyles from '../Assets/styles/MainStyles';
 import { LargeText, SmallText, MediumText } from '../components/Text';
 import HomeStyles from '../Assets/styles/pages/HomeStyles';
-import Config from 'react-native-config';
+import CategoryList from '../components/CategoryList';
 
 function HomeScreen({ navigation }) {
     return (
@@ -28,7 +28,9 @@ function HomeScreen({ navigation }) {
                         </MediumText>
                     </View>
                 </View>
-                <View style={{ flex: 0.6 }}>{/*<CategoryList/>*/}</View>
+                <View style={{ flex: 0.6 }}>
+                    <CategoryList />
+                </View>
             </SafeAreaView>
         </Fragment>
     );
