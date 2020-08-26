@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 class LoginScreen extends Component {
     render() {
         return (
-            <View style={MainStyles.Container}>
+            <View style={MainStyles.container}>
                 <View style={LoginStyles.imageContainer}>
                     <Image
                         source={require('../Assets/images/logo.png')}
