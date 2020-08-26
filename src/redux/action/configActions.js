@@ -16,11 +16,12 @@ export const getCategories = () => {
         dispatch({
             type: GET_CATEGORIES_PENDING,
         });
-
-        request('/categories/all', 'GET')
+        request('/itemcategory/all', 'GET')
             .then((response) => {
-                type: GET_CATEGORIES_SUCCESS;
-                payload: response;
+                dispatch({
+                    type: GET_CATEGORIES_SUCCESS,
+                    payload: response,
+                });
             })
             .catch((error) => {
                 dispatch({
