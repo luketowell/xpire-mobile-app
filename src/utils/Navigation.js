@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import LoadingScreen from '../screens/LoadingScreen';
+import { connect } from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,13 +37,18 @@ class Navigation extends Component {
     }
 
     render() {
-        console.log(this.state.authed);
+        const { auth } = this.props;
         return (
             <NavigationContainer>
-                {this.state.authed ? <AuthedLinks /> : <UnauthedLinks />}
+                {auth.loggedIn ? <AuthedLinks /> : <UnauthedLinks />}
             </NavigationContainer>
         );
     }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth,
+    };
+};
+export default connect(mapStateToProps, {})(Navigation);
