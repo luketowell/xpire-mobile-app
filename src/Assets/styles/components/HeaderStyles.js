@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { primaryGreen } from '../variables/variables';
 
 const HeaderStyle = StyleSheet.create({
     container: {
         flex: 0.06,
         flexDirection: 'row',
+        backgroundColor: primaryGreen,
     },
     menuButton: {
         flex: 0.2,
