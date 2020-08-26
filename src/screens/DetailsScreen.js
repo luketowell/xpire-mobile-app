@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import MainStyles from '../styles/MainStyles';
+import MainStyles from '../Assets/styles/MainStyles';
 
 function DetailsScreen() {
     return (
