@@ -39,3 +39,5 @@ const ConfigReducer = (state = initialState, action) => {
             return { ...state };
     }
 };
+
+export default ConfigReducer;
