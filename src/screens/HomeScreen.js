@@ -3,6 +3,7 @@ import { SafeAreaView, Text, View } from 'react-native';
 import Header from '../components/Header';
 import MainStyles from '../Assets/styles/MainStyles';
 import { LargeText, SmallText, MediumText } from '../components/Text';
+import HomeStyles from '../Assets/styles/pages/HomeStyles';
 
 function HomeScreen({ navigation }) {
     return (
@@ -10,12 +11,7 @@ function HomeScreen({ navigation }) {
             <SafeAreaView style={MainStyles.top} />
             <SafeAreaView style={MainStyles.container}>
                 <Header navigation={navigation} />
-                <View
-                    style={{
-                        flex: 0.3,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}>
+                <View style={HomeStyles.PageText}>
                     <LargeText>
                         <Text>Welcome to Xpire!</Text>
                     </LargeText>
