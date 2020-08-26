@@ -2,11 +2,13 @@ import Config from 'react-native-config';
 import axios from 'axios';
 
 const request = async (url, requestType, data = {}) => {
-    let request = await axios({
+    console.log(Config.HOST_URL);
+
+    let appRequest = await axios({
         baseURL: Config.HOST_URL,
         url: url,
         method: requestType,
-        data: data,
+        data: null,
     })
         .then((response) => {
             return response.data;
@@ -15,7 +17,7 @@ const request = async (url, requestType, data = {}) => {
             throw error;
         });
 
-    return request;
+    return appRequest;
 };
 
 export default request;
