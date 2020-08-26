@@ -13,7 +13,6 @@ import Store from './src/redux/store';
 import Config from 'react-native-config';
 
 function App() {
-    console.log(Config.ENV);
     return (
         <Provider store={Store}>
             <Navigation />
