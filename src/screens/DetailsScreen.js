@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import MainStyles from '../Assets/styles/MainStyles';
+import Header from '../components/Header';
 
-function DetailsScreen() {
+function DetailsScreen({ navigation }) {
     return (
-        <View style={MainStyles.Container}>
+        <SafeAreaView style={MainStyles.Container}>
+            <Header navigation={navigation} title="Expiring Items" />
             <Text>Details Screen</Text>
-        </View>
+        </SafeAreaView>
     );
 }
 
