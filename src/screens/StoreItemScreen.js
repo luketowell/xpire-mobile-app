@@ -1,21 +1,36 @@
-import React, { Component } from 'react';
-import { SafeAreaView } from 'react-native';
+import React, { Component, Fragment } from 'react';
+import { SafeAreaView, View, Text } from 'react-native';
 import { MediumText } from '../components/Text';
 import { connect } from 'react-redux';
 import { getStoreItemsByCategory } from '../redux/action/storeItemActions';
+import MainStyles from '../Assets/styles/MainStyles';
+import StoreItemScreenStyle from '../Assets/styles/pages/StoreItemScreenStyle';
+import Header from '../components/Header';
 
 class StoreItemScreen extends Component {
     componentDidMount() {
-        let { id } = this.props.route.params;
+        let { id } = this.props.route.params.category;
         this.props.getStoreItemsByCategory(id);
     }
 
     render() {
-        const { id } = this.props.route.params;
+        const { navigation } = this.props;
+        const { id, name } = this.props.route.params.category;
         return (
-            <SafeAreaView>
-                <MediumText>Items for categoryid: {id}</MediumText>
-            </SafeAreaView>
+            <Fragment>
+                <SafeAreaView style={MainStyles.top} />
+                <SafeAreaView style={MainStyles.container}>
+                    <Header navigation={navigation} title="Expiring Items" />
+                    <View style={StoreItemScreenStyle.textContainer}>
+                        <MediumText>
+                            <Text style={{ textAlign: 'left' }}>
+                                Expiring items in the {name.toLowerCase()}{' '}
+                                Department:
+                            </Text>
+                        </MediumText>
+                    </View>
+                </SafeAreaView>
+            </Fragment>
         );
     }
 }

@@ -7,9 +7,7 @@ const CategoryCard = ({ category, navigation }) => {
     return (
         <View style={CategoryCardStyle.container}>
             <TouchableOpacity
-                onPress={() =>
-                    navigation.navigate('Items', { id: category.id })
-                }
+                onPress={() => navigation.navigate('Items', { category })}
                 style={CategoryCardStyle.clickableArea}>
                 <View style={CategoryCardStyle.imageContainer}>
                     <Image
