@@ -32,6 +32,44 @@ export const getCategories = () => {
     };
 };
 
-export const getStores = () => {};
+export const getStores = () => {
+    return (dispatch) => {
+        dispatch({
+            type: GET_STORES_PENDING,
+        });
+        request('/store/all', 'GET')
+            .then((response) => {
+                dispatch({
+                    type: GET_STORES_SUCCESS,
+                    payload: response,
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_STORES_FAILURE,
+                    payload: error,
+                });
+            });
+    };
+};
 
-export const getStatuses = () => {};
+export const getStatuses = () => {
+    return (dispatch) => {
+        dispatch({
+            type: GET_STATUSES_PENDING,
+        });
+        request('/status/all', 'GET')
+            .then((response) => {
+                dispatch({
+                    type: GET_STATUSES_SUCCESS,
+                    payload: response,
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_STATUSES_FAILURE,
+                    payload: error,
+                });
+            });
+    };
+};
