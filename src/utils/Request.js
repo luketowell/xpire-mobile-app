@@ -2,8 +2,6 @@ import Config from 'react-native-config';
 import axios from 'axios';
 
 const request = async (url, requestType, data = {}) => {
-    console.log(Config.HOST_URL);
-
     let appRequest = await axios({
         baseURL: Config.HOST_URL,
         url: url,

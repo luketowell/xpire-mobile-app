@@ -14,7 +14,6 @@ class LoginScreen extends Component {
     }
 
     render() {
-        console.log(this.props.config);
         return (
             <View style={MainStyles.container}>
                 <View style={LoginStyles.imageContainer}>

@@ -34,7 +34,6 @@ class CategoryList extends Component {
     }
     render() {
         const { config, navigation } = this.props;
-        console.log(config);
         return (
             <ScrollView>
                 <View style={{ alignContent: 'center' }}>
