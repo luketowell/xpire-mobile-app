@@ -11,6 +11,7 @@ const CategoryCardStyle = StyleSheet.create({
         height: 100,
         width: 100,
     },
+    clickableArea: { marginHorizontal: 100 },
 });
 
 export default CategoryCardStyle;

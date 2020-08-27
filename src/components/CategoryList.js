@@ -5,14 +5,14 @@ import { authUser } from '../redux/action/authActions';
 import { getCategories } from '../redux/action/configActions';
 import CategoryCard from './CategoryCard';
 import { MediumText } from './Text';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class CategoryList extends Component {
     componentDidMount() {
         this.props.getCategories();
     }
 
-    renderCategories(config) {
-        console.log('renderconfig', config);
+    renderCategories(config, navigation) {
         const { categoriesStatus, categories } = config;
 
         if (categoriesStatus === 'pending') {
@@ -26,17 +26,19 @@ class CategoryList extends Component {
             );
         } else {
             return categories.map((category, index) => (
-                <CategoryCard category={category} key={index} />
+                <View key={index}>
+                    <CategoryCard category={category} navigation={navigation} />
+                </View>
             ));
         }
     }
     render() {
-        const { config } = this.props;
+        const { config, navigation } = this.props;
         console.log(config);
         return (
             <ScrollView>
                 <View style={{ alignContent: 'center' }}>
-                    {this.renderCategories(config)}
+                    {this.renderCategories(config, navigation)}
                 </View>
             </ScrollView>
         );
