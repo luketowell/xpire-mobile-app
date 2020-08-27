@@ -1,22 +1,15 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { MediumText } from './Text';
+import CategoryCardStyle from '../Assets/styles/components/CategoryCardStyle';
 
 const CategoryCard = ({ category }) => {
     return (
-        <View style={{ flex: 0.5, paddingBottom: 20 }}>
-            <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    paddingBottom: 10,
-                }}>
+        <View style={CategoryCardStyle.container}>
+            <View style={CategoryCardStyle.imageContainer}>
                 <Image
                     source={{ uri: category.image_url }}
-                    style={{
-                        height: 100,
-                        width: 100,
-                    }}
+                    style={CategoryCardStyle.image}
                 />
             </View>
             <MediumText>{category.name}</MediumText>
