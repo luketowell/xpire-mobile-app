@@ -3,11 +3,18 @@ import { View, Text, Button, Image } from 'react-native';
 import MainStyles from '../Assets/styles/MainStyles';
 import { connect } from 'react-redux';
 import { authUser } from '../redux/action/authActions';
+import { getStores, getStatuses } from '../redux/action/configActions';
 import LoginStyles from '../Assets/styles/pages/LoginStyles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class LoginScreen extends Component {
+    componentDidMount() {
+        this.props.getStores();
+        this.props.getStatuses();
+    }
+
     render() {
+        console.log(this.props.config);
         return (
             <View style={MainStyles.container}>
                 <View style={LoginStyles.imageContainer}>
@@ -30,7 +37,10 @@ class LoginScreen extends Component {
 const mapStateToProps = (state) => {
     return {
         auth: state.auth,
+        config: state.config,
     };
 };
 
-export default connect(mapStateToProps, { authUser })(LoginScreen);
+export default connect(mapStateToProps, { authUser, getStores, getStatuses })(
+    LoginScreen
+);
