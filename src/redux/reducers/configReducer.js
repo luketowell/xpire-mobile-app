@@ -12,7 +12,11 @@ import {
 
 const initialState = {
     categoriesStatus: 'pending',
+    storesStatus: 'pending',
+    statusesStatus: 'pending',
     categories: [],
+    stores: [],
+    statuses: [],
     error: '',
 };
 
@@ -34,6 +38,41 @@ const ConfigReducer = (state = initialState, action) => {
                 ...state,
                 categoriesStatus: 'complete',
                 categories: action.payload,
+            };
+        case GET_STATUSES_PENDING:
+            return {
+                ...state,
+                statusesStatus: 'pending',
+            };
+        case GET_STATUSES_SUCCESS:
+            return {
+                ...state,
+                statusesStatus: 'complete',
+                statuses: action.payload,
+            };
+        case GET_STATUSES_FAILURE:
+            return {
+                ...state,
+                statusesStatus: 'failed',
+                error: action.payload.message,
+            };
+        case GET_STORES_PENDING:
+            return {
+                ...state,
+                statusesStatus: 'pending',
+                stores: action.payload,
+            };
+        case GET_STORES_SUCCESS:
+            return {
+                ...state,
+                statusesStatus: 'complete',
+                stores: action.payload,
+            };
+        case GET_STORES_FAILURE:
+            return {
+                ...state,
+                statusesStatus: 'failed',
+                error: action.payload.message,
             };
         default:
             return { ...state };
