@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
 import { MediumText } from '../components/Text';
 import { connect } from 'react-redux';
+import { getStoreItemsByCategory } from '../redux/action/storeItemActions';
 
 class StoreItemScreen extends Component {
     componentDidMount() {
-        console.log(this.props.route.params.id);
+        let { id } = this.props.route.params;
+        this.props.getStoreItemsByCategory(id);
     }
 
     render() {
@@ -24,4 +26,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {})(StoreItemScreen);
+export default connect(mapStateToProps, { getStoreItemsByCategory })(
+    StoreItemScreen
+);
