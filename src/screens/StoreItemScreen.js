@@ -31,10 +31,7 @@ class StoreItemScreen extends Component {
                         </MediumText>
                     </View>
                     <View style={{ flex: 0.8 }}>
-                        <LoadingSpinner
-                            style={{ fontColor: 'blue' }}
-                            size={64}
-                        />
+                        <LoadingSpinner size={64} />
                     </View>
                 </SafeAreaView>
             </Fragment>
