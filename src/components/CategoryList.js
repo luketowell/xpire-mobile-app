@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { authUser } from '../redux/action/authActions';
-import { ScrollView } from 'react-native-gesture-handler';
 import { getCategories } from '../redux/action/configActions';
+import CategoryCard from './CategoryCard';
+import { MediumText } from './Text';
 
 class CategoryList extends Component {
     componentDidMount() {
@@ -15,24 +16,30 @@ class CategoryList extends Component {
         const { categoriesStatus, categories } = config;
 
         if (categoriesStatus === 'pending') {
-            return <Text>Loading...</Text>;
+            return <MediumText>Loading...</MediumText>;
         } else if (categoriesStatus === 'failed') {
             return (
-                <Text>
+                <MediumText>
                     Unfortunately something has gone wrong please contact
                     support.
-                </Text>
+                </MediumText>
             );
         } else {
             return categories.map((category, index) => (
-                <Text key={index}>{category.name}</Text>
+                <CategoryCard category={category} key={index} />
             ));
         }
     }
     render() {
         const { config } = this.props;
         console.log(config);
-        return <ScrollView>{this.renderCategories(config)}</ScrollView>;
+        return (
+            <ScrollView>
+                <View style={{ alignContent: 'center' }}>
+                    {this.renderCategories(config)}
+                </View>
+            </ScrollView>
+        );
     }
 }
 
