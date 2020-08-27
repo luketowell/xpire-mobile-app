@@ -6,6 +6,7 @@ import { getStoreItemsByCategory } from '../redux/action/storeItemActions';
 import MainStyles from '../Assets/styles/MainStyles';
 import StoreItemScreenStyle from '../Assets/styles/pages/StoreItemScreenStyle';
 import Header from '../components/Header';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 class StoreItemScreen extends Component {
     componentDidMount() {
@@ -28,6 +29,12 @@ class StoreItemScreen extends Component {
                                 Department:
                             </Text>
                         </MediumText>
+                    </View>
+                    <View style={{ flex: 0.8 }}>
+                        <LoadingSpinner
+                            style={{ fontColor: 'blue' }}
+                            size={64}
+                        />
                     </View>
                 </SafeAreaView>
             </Fragment>
