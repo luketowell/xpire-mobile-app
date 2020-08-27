@@ -29,7 +29,7 @@ function HomeScreen({ navigation }) {
                     </View>
                 </View>
                 <View style={{ flex: 0.6 }}>
-                    <CategoryList />
+                    <CategoryList navigation={navigation} />
                 </View>
             </SafeAreaView>
         </Fragment>
