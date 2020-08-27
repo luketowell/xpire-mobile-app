@@ -2,6 +2,7 @@ import { AUTH_USER } from '../constants';
 
 const initialState = {
     loggedIn: false,
+    user: {},
 };
 
 const AuthReducer = (state = initialState, action) => {
@@ -10,6 +11,7 @@ const AuthReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: true,
+                user: action.payload,
             };
         default:
             return {
