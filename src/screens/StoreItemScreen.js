@@ -16,11 +16,18 @@ class StoreItemScreen extends Component {
 
     renderItemList() {
         console.log(this.props);
-        const { storeItemsListStatus } = this.props.storeItem;
+        const { storeItemsListStatus, error } = this.props.storeItem;
         if (storeItemsListStatus === 'pending') {
             return <LoadingSpinner size={64} />;
-        } else {
-            return null;
+        } else if (storeItemsListStatus === 'failed') {
+            return (
+                <MediumText>
+                    <Text>
+                        There has been the following error:{'\n'} {error}.{'\n'}
+                    </Text>
+                    <Text>Please contact support.</Text>
+                </MediumText>
+            );
         }
     }
 

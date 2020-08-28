@@ -12,18 +12,18 @@ export const getStoreItemsByCategory = (categoryId) => {
         dispatch({
             type: GET_CATEGORY_STORE_ITEMS_PENDING,
         });
-        // request(`/storeitemsummary/${storeNumber}/${categoryId}`, 'GET')
-        //     .then((response) => {
-        //         dispatch({
-        //             type: GET_CATEGORY_STORE_ITEMS_SUCCESS,
-        //             payload: response,
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         dispatch({
-        //             type: GET_CATEGORY_STORE_ITEMS_FAILED,
-        //             payload: error,
-        //         });
-        //     });
+        request(`/storeItemsummary/${storeNumber}/${categoryId}`, 'GET')
+            .then((response) => {
+                dispatch({
+                    type: GET_CATEGORY_STORE_ITEMS_SUCCESS,
+                    payload: response,
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_CATEGORY_STORE_ITEMS_FAILED,
+                    payload: error.message,
+                });
+            });
     };
 };
