@@ -14,6 +14,16 @@ class StoreItemScreen extends Component {
         this.props.getStoreItemsByCategory(id);
     }
 
+    renderItemList() {
+        console.log(this.props);
+        const { storeItemsListStatus } = this.props.storeItem;
+        if (storeItemsListStatus === 'pending') {
+            return <LoadingSpinner size={64} />;
+        } else {
+            return null;
+        }
+    }
+
     render() {
         const { navigation } = this.props;
         const { id, name } = this.props.route.params.category;
@@ -30,9 +40,7 @@ class StoreItemScreen extends Component {
                             </Text>
                         </MediumText>
                     </View>
-                    <View style={{ flex: 0.8 }}>
-                        <LoadingSpinner size={64} />
-                    </View>
+                    <View style={{ flex: 0.8 }}>{this.renderItemList()}</View>
                 </SafeAreaView>
             </Fragment>
         );
@@ -41,7 +49,7 @@ class StoreItemScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth,
+        storeItem: state.storeItem,
     };
 };
 
