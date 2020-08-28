@@ -1,11 +1,14 @@
 import { StyleSheet, Platform } from 'react-native';
-import { primaryGreen } from '../variables/variables';
 
-const HeaderStyle = StyleSheet.create({
+const StoreItemListStyle = StyleSheet.create({
     container: {
-        flex: 0.06,
-        flexDirection: 'row',
-        backgroundColor: primaryGreen,
+        backgroundColor: '#FFFFE5',
+        alignSelf: 'stretch',
+        margin: 10,
+        paddingTop: 5,
+        borderColor: 'black',
+        borderWidth: 2,
+        borderRadius: 6,
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
@@ -19,26 +22,10 @@ const HeaderStyle = StyleSheet.create({
                 shadowOpacity: 1,
                 shadowOffset: { height: 2, width: 2 },
                 shadowRadius: 8,
-                elevation: 10,
+                elevation: 13,
             },
         }),
     },
-    menuButton: {
-        flex: 0.2,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        flex: 0.8,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    rightSide: {
-        flex: 0.2,
-    },
-    titleText: {
-        fontSize: 24,
-    },
 });
 
-export default HeaderStyle;
+export default StoreItemListStyle;
