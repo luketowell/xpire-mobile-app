@@ -2,6 +2,7 @@ import {
     GET_CATEGORY_STORE_ITEMS_PENDING,
     GET_CATEGORY_STORE_ITEMS_FAILED,
     GET_CATEGORY_STORE_ITEMS_SUCCESS,
+    RESET_STORE_ITEMS_LIST,
 } from '../constants';
 import request from '../../utils/Request';
 
@@ -25,5 +26,11 @@ export const getStoreItemsByCategory = (categoryId) => {
                     payload: error.message,
                 });
             });
+    };
+};
+
+export const resetStoreItemsList = () => {
+    return {
+        type: RESET_STORE_ITEMS_LIST,
     };
 };

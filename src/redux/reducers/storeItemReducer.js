@@ -2,6 +2,7 @@ import {
     GET_CATEGORY_STORE_ITEMS_PENDING,
     GET_CATEGORY_STORE_ITEMS_FAILED,
     GET_CATEGORY_STORE_ITEMS_SUCCESS,
+    RESET_STORE_ITEMS_LIST,
 } from '../constants';
 
 const initialState = {
@@ -11,7 +12,6 @@ const initialState = {
 };
 
 const StoreItemReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case GET_CATEGORY_STORE_ITEMS_PENDING:
             return {
@@ -29,6 +29,12 @@ const StoreItemReducer = (state = initialState, action) => {
                 ...state,
                 storeItemsListStatus: 'completed',
                 storeItemList: action.payload,
+            };
+        case RESET_STORE_ITEMS_LIST:
+            return {
+                storeItemsListStatus: 'pending',
+                storeItemList: [],
+                error: '',
             };
         default:
             return {
