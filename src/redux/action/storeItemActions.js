@@ -12,7 +12,7 @@ export const getStoreItemsByCategory = (categoryId) => {
         dispatch({
             type: GET_CATEGORY_STORE_ITEMS_PENDING,
         });
-        request(`/storeItemsummary/${storeNumber}/${categoryId}`, 'GET')
+        request(`/storeitemsummary/${storeNumber}/${categoryId}`, 'GET')
             .then((response) => {
                 dispatch({
                     type: GET_CATEGORY_STORE_ITEMS_SUCCESS,

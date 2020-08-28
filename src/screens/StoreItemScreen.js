@@ -28,6 +28,8 @@ class StoreItemScreen extends Component {
                     <Text>Please contact support.</Text>
                 </MediumText>
             );
+        } else {
+            return <Text>{storeItemsListStatus}</Text>;
         }
     }
 
