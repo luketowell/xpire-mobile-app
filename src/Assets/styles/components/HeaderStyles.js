@@ -11,7 +11,7 @@ const HeaderStyle = StyleSheet.create({
                 shadowColor: 'black',
                 shadowOpacity: 0.6,
                 shadowOffset: { height: 4, width: 2 },
-                shadowRadius: 8,
+                shadowRadius: 2,
                 overflow: 'visible',
             },
             android: {

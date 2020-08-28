@@ -5,16 +5,16 @@ const StoreItemCardStyle = StyleSheet.create({
         flex: 0.2,
         flexDirection: 'row',
         backgroundColor: '#FFFFCC',
-        marginHorizontal: 5,
+        margin: 5,
         borderColor: 'black',
         borderWidth: 2,
-        borderRadius: 6,
+        borderRadius: 4,
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
                 shadowOpacity: 0.6,
-                shadowOffset: { height: 4, width: 2 },
-                shadowRadius: 8,
+                shadowOffset: { height: 2, width: 2 },
+                shadowRadius: 3,
                 overflow: 'visible',
             },
             android: {
