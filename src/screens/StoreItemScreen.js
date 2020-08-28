@@ -2,21 +2,37 @@ import React, { Component, Fragment } from 'react';
 import { SafeAreaView, View, Text } from 'react-native';
 import { MediumText } from '../components/Text';
 import { connect } from 'react-redux';
-import { getStoreItemsByCategory } from '../redux/action/storeItemActions';
+import {
+    getStoreItemsByCategory,
+    resetStoreItemsList,
+} from '../redux/action/storeItemActions';
 import MainStyles from '../Assets/styles/MainStyles';
 import StoreItemScreenStyle from '../Assets/styles/pages/StoreItemScreenStyle';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 import StoreItemList from '../components/StoreItemList';
+import { NavigationEvents } from '@react-navigation/native';
 
 class StoreItemScreen extends Component {
     componentDidMount() {
-        let { id } = this.props.route.params.category;
-        this.props.getStoreItemsByCategory(id);
+        this.focusListener = this.props.navigation.addListener('focus', () => {
+            let { id } = this.props.route.params.category;
+            this.props.getStoreItemsByCategory(id);
+        });
+        this.beforeLeaveListener = this.props.navigation.addListener(
+            'blur',
+            () => {
+                this.props.resetStoreItemsList();
+            }
+        );
+    }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+        this.beforeLeaveListener.remove();
     }
 
     renderItemList() {
-        console.log(this.props);
         const {
             storeItemsListStatus,
             error,
@@ -47,6 +63,7 @@ class StoreItemScreen extends Component {
     render() {
         const { navigation } = this.props;
         const { id, name } = this.props.route.params.category;
+
         return (
             <Fragment>
                 <SafeAreaView style={MainStyles.top} />
@@ -73,6 +90,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { getStoreItemsByCategory })(
-    StoreItemScreen
-);
+export default connect(mapStateToProps, {
+    getStoreItemsByCategory,
+    resetStoreItemsList,
+})(StoreItemScreen);
