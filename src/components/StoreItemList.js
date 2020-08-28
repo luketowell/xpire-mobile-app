@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import StoreItemCard from '../screens/StoreItemCard';
+import StoreItemCard from './StoreItemCard';
 import StoreItemListStyle from '../Assets/styles/components/StoreItemListStyle';
+import { MediumText } from './Text';
 
 class StoreItemList extends Component {
     renderStoreItems() {
@@ -10,12 +11,14 @@ class StoreItemList extends Component {
         if (storeItems.length === 0) {
             return (
                 <View>
-                    <Text>There are no Store items for this category</Text>
+                    <MediumText>
+                        There are no store items {'\n'}for this category
+                    </MediumText>
                 </View>
             );
         } else {
-            return storeItems.map((storeItem) => (
-                <View>
+            return storeItems.map((storeItem, index) => (
+                <View key={index}>
                     <StoreItemCard
                         storeItem={storeItem}
                         navigation={navigation}
