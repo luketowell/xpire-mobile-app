@@ -7,6 +7,7 @@ import MainStyles from '../Assets/styles/MainStyles';
 import StoreItemScreenStyle from '../Assets/styles/pages/StoreItemScreenStyle';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
+import StoreItemList from '../components/StoreItemList';
 
 class StoreItemScreen extends Component {
     componentDidMount() {
@@ -16,7 +17,12 @@ class StoreItemScreen extends Component {
 
     renderItemList() {
         console.log(this.props);
-        const { storeItemsListStatus, error } = this.props.storeItem;
+        const {
+            storeItemsListStatus,
+            error,
+            storeItemList,
+        } = this.props.storeItem;
+
         if (storeItemsListStatus === 'pending') {
             return <LoadingSpinner size={64} />;
         } else if (storeItemsListStatus === 'failed') {
@@ -29,7 +35,12 @@ class StoreItemScreen extends Component {
                 </MediumText>
             );
         } else {
-            return <Text>{storeItemsListStatus}</Text>;
+            return (
+                <StoreItemList
+                    navigation={this.props.navigation}
+                    storeItems={storeItemList}
+                />
+            );
         }
     }
 
@@ -49,7 +60,7 @@ class StoreItemScreen extends Component {
                             </Text>
                         </MediumText>
                     </View>
-                    <View style={{ flex: 0.8 }}>{this.renderItemList()}</View>
+                    <View style={{ flex: 0.9 }}>{this.renderItemList()}</View>
                 </SafeAreaView>
             </Fragment>
         );

@@ -5,7 +5,7 @@ import {
 } from '../constants';
 
 const initialState = {
-    storeItemsListStatus: '',
+    storeItemsListStatus: 'pending',
     storeItemList: [],
     error: '',
 };
