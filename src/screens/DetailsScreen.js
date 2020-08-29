@@ -56,7 +56,6 @@ class DetailsScreen extends Component {
     render() {
         const { id } = this.props.route.params;
         const { navigation } = this.props;
-        console.log(id);
         return (
             <Fragment>
                 <SafeAreaView style={MainStyles.top} />
