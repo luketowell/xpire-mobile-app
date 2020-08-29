@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import DetailStyles from '../Assets/styles/pages/DetailStyles';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { MediumText } from '../components/Text';
+import ItemDetail from '../components/ItemDetail';
 
 class DetailsScreen extends Component {
     componentDidMount() {
@@ -31,8 +32,10 @@ class DetailsScreen extends Component {
     }
 
     renderItemDetails = () => {
-        const { storeItemDetailStatus } = this.props.storeItem;
-        console.log(storeItemDetailStatus);
+        const {
+            storeItemDetailStatus,
+            storeItemDetails,
+        } = this.props.storeItem;
         switch (storeItemDetailStatus) {
             case 'pending':
                 return <LoadingSpinner size={64} />;
@@ -43,6 +46,8 @@ class DetailsScreen extends Component {
                         Please contact support.
                     </MediumText>
                 );
+            case 'complete':
+                return <ItemDetail details={storeItemDetails.item} />;
             default:
                 return <Text>Ooops, something has gone wrong.</Text>;
         }
