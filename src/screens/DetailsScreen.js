@@ -27,8 +27,8 @@ class DetailsScreen extends Component {
     }
 
     componentWillUnmount() {
-        // this.focusListener.remove();
-        // this.beforeLeaveListener.remove();
+        this.focusListener.remove();
+        this.beforeLeaveListener.remove();
     }
 
     renderItemDetails = () => {
@@ -56,6 +56,7 @@ class DetailsScreen extends Component {
     render() {
         const { id } = this.props.route.params;
         const { navigation } = this.props;
+        console.log(id);
         return (
             <Fragment>
                 <SafeAreaView style={MainStyles.top} />

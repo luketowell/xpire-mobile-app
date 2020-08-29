@@ -1,43 +1,27 @@
 import React from 'react';
 import { Text, View, Image, ScrollView } from 'react-native';
 import { LargeText, MediumText } from './Text';
+import ItemDetailStyle from '../Assets/styles/components/ItemDetail';
 
 function ItemDetail({ details }) {
     console.log(details);
     return (
-        <View style={{ flex: 0.7 }}>
-            <View
-                style={{
-                    flex: 0.4,
-                    justifyContent: 'center',
-                }}>
+        <View style={ItemDetailStyle.container}>
+            <View style={ItemDetailStyle.imageContainer}>
                 <Image
                     source={{ uri: details.img_url }}
-                    style={{
-                        height: 200,
-                        width: 200,
-                        resizeMode: 'contain',
-                        alignSelf: 'center',
-                        borderColor: 'black',
-                        borderWidth: 2,
-                        borderRadius: 5,
-                    }}
+                    style={ItemDetailStyle.image}
                 />
             </View>
-            <View style={{ flex: 0.17, justifyContent: 'center' }}>
+            <View style={ItemDetailStyle.nameContainer}>
                 <LargeText>
                     <Text style={{ textAlign: 'center', flexWrap: 'wrap' }}>
                         {details.name}
                     </Text>
                 </LargeText>
             </View>
-            <View style={{ flex: 0.43 }}>
-                <ScrollView
-                    style={{
-                        padding: 10,
-
-                        marginHorizontal: 10,
-                    }}>
+            <View style={ItemDetailStyle.detailsContainer}>
+                <ScrollView style={ItemDetailStyle.detailsScrollView}>
                     <MediumText align={'left'}>
                         <Text>
                             Size: {details.size}
