@@ -29,8 +29,12 @@ export const getStoreItemsByCategory = (categoryId) => {
     };
 };
 
+export const getStoreItemDetails = () => {};
+
 export const resetStoreItemsList = () => {
     return {
         type: RESET_STORE_ITEMS_LIST,
     };
 };
+
+export const resetStoreItem = () => {};
