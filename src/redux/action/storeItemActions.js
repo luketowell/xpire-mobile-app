@@ -38,7 +38,7 @@ export const getStoreItemDetails = (storeItemId) => {
         dispatch({
             type: GET_STORE_ITEM_DETAILS_PENDING,
         });
-        request(`/storeItem/id/${storeItemId}`, 'GET')
+        request(`/storeitem/id/${storeItemId}`, 'GET')
             .then((response) => {
                 dispatch({
                     type: GET_STORE_ITEM_DETAILS_SUCCESS,
