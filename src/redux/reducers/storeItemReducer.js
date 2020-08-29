@@ -6,6 +6,7 @@ import {
     GET_STORE_ITEM_DETAILS_PENDING,
     GET_STORE_ITEM_DETAILS_FAILED,
     GET_STORE_ITEM_DETAILS_SUCCESS,
+    RESET_STORE_ITEM_DETAILS,
 } from '../constants';
 
 const initialState = {
@@ -57,6 +58,13 @@ const StoreItemReducer = (state = initialState, action) => {
                 ...state,
                 storeItemDetailStatus: 'complete',
                 storeItemDetails: action.payload,
+            };
+        case RESET_STORE_ITEM_DETAILS:
+            return {
+                ...state,
+                storeItemDetailStatus: 'pending',
+                storeItemDetails: {},
+                error: '',
             };
         default:
             return {
