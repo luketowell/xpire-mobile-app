@@ -15,7 +15,6 @@ const StoreItemListStyle = StyleSheet.create({
                 shadowOpacity: 0.6,
                 shadowOffset: { height: 4, width: 2 },
                 shadowRadius: 8,
-                overflow: 'visible',
             },
             android: {
                 shadowColor: 'black',

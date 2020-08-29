@@ -15,7 +15,6 @@ const StoreItemCardStyle = StyleSheet.create({
                 shadowOpacity: 0.6,
                 shadowOffset: { height: 2, width: 2 },
                 shadowRadius: 3,
-                overflow: 'visible',
             },
             android: {
                 shadowColor: '#000',
