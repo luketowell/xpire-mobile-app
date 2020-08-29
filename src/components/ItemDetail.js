@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, ScrollView } from 'react-native';
 import { LargeText, MediumText } from './Text';
 import ItemDetailStyle from '../Assets/styles/components/ItemDetail';
+import Accordion from './Accordion';
 
 function ItemDetail({ details }) {
     console.log(details);
@@ -21,7 +22,7 @@ function ItemDetail({ details }) {
                 </LargeText>
             </View>
             <View style={ItemDetailStyle.detailsContainer}>
-                <ScrollView style={ItemDetailStyle.detailsScrollView}>
+                <Accordion title="Item Details">
                     <MediumText align={'left'}>
                         <Text>
                             Size: {details.size}
@@ -34,7 +35,7 @@ function ItemDetail({ details }) {
                         <Text>Description:{'\n'}</Text>
                         <Text>{details.description}</Text>
                     </MediumText>
-                </ScrollView>
+                </Accordion>
             </View>
         </View>
     );

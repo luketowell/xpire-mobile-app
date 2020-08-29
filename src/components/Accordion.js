@@ -20,9 +20,19 @@ class Accordion extends Component {
         this.setState({ expanded: !this.state.expanded });
     }
 
+    renderChildren() {
+        if (this.props.children.length > 0) {
+            return this.props.children.map((child, index) => {
+                return <MediumText key={index}>{child}</MediumText>;
+            });
+        } else {
+            return <MediumText>{this.props.children}</MediumText>;
+        }
+    }
     render() {
+        console.log(this.props.children.length > 0);
         return (
-            <View style={{ flex: 0.3 }}>
+            <View>
                 <TouchableOpacity
                     onPress={() => {
                         this.toggleAccordion();
@@ -42,9 +52,7 @@ class Accordion extends Component {
                 <View style={AccordionStyles.accordionHeader} />
                 {this.state.expanded && (
                     <ScrollView style={AccordionStyles.dropDownContainer}>
-                        {this.props.children.map((child, index) => {
-                            return <MediumText key={index}>{child}</MediumText>;
-                        })}
+                        {this.renderChildren()}
                     </ScrollView>
                 )}
             </View>
