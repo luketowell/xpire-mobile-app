@@ -7,6 +7,9 @@ import {
     resetStoreItem,
 } from '../redux/action/storeItemActions';
 import { connect } from 'react-redux';
+import DetailStyles from '../Assets/styles/pages/DetailStyles';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { MediumText } from '../components/Text';
 
 class DetailsScreen extends Component {
     componentDidMount() {
@@ -23,12 +26,19 @@ class DetailsScreen extends Component {
     }
 
     componentWillUnmount() {
-        this.focusListener.remove();
-        this.beforeLeaveListener.remove();
+        // this.focusListener.remove();
+        // this.beforeLeaveListener.remove();
     }
 
     renderItemDetails = () => {
-        return <Text>Loading....</Text>;
+        const { storeItemDetailStatus } = this.props.storeItem;
+        console.log(storeItemDetailStatus);
+        switch (storeItemDetailStatus) {
+            case 'pending':
+                return <LoadingSpinner size={64} />;
+            default:
+                return <Text>Ooops, something has gone wrong.</Text>;
+        }
     };
 
     render() {
@@ -39,7 +49,9 @@ class DetailsScreen extends Component {
                 <SafeAreaView style={MainStyles.top} />
                 <SafeAreaView style={MainStyles.container}>
                     <Header navigation={navigation} title="Expiring Items" />
-                    <View>{this.renderItemDetails()}</View>
+                    <View style={DetailStyles.Container}>
+                        {this.renderItemDetails()}
+                    </View>
                 </SafeAreaView>
             </Fragment>
         );
