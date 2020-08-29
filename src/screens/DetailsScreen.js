@@ -11,6 +11,8 @@ import DetailStyles from '../Assets/styles/pages/DetailStyles';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { MediumText } from '../components/Text';
 import ItemDetail from '../components/ItemDetail';
+import Accordion from '../components/Accordion';
+import Action from '../components/Action';
 
 class DetailsScreen extends Component {
     componentDidMount() {
@@ -53,6 +55,29 @@ class DetailsScreen extends Component {
         }
     };
 
+    renderActions = () => {
+        const {
+            storeItemDetails,
+            storeItemDetailStatus,
+        } = this.props.storeItem;
+        if (storeItemDetailStatus === 'complete') {
+            if (storeItemDetails.actions.length > 0) {
+                console.log(storeItemDetails.actions);
+                return (
+                    <Accordion title="Previous Actions">
+                        {storeItemDetails.actions.map((action, index) => {
+                            return <Action action={action} key={index} />;
+                        })}
+                    </Accordion>
+                );
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    };
+
     render() {
         const { id } = this.props.route.params;
         const { navigation } = this.props;
@@ -63,6 +88,7 @@ class DetailsScreen extends Component {
                     <Header navigation={navigation} title="Expiring Items" />
                     <View style={DetailStyles.Container}>
                         {this.renderItemDetails()}
+                        {this.renderActions()}
                     </View>
                 </SafeAreaView>
             </Fragment>
