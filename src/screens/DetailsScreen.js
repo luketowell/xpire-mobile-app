@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import MainStyles from '../Assets/styles/MainStyles';
 import Header from '../components/Header';
 import {
@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 class DetailsScreen extends Component {
     componentDidMount() {
         this.focusListener = this.props.navigation.addListener('focus', () => {
-            let { id } = this.props.route.params.category;
+            let { id } = this.props.route.params;
             this.props.getStoreItemDetails(id);
         });
         this.beforeLeaveListener = this.props.navigation.addListener(
@@ -27,6 +27,10 @@ class DetailsScreen extends Component {
         this.beforeLeaveListener.remove();
     }
 
+    renderItemDetails = () => {
+        return <Text>Loading....</Text>;
+    };
+
     render() {
         const { id } = this.props.route.params;
         const { navigation } = this.props;
@@ -35,7 +39,7 @@ class DetailsScreen extends Component {
                 <SafeAreaView style={MainStyles.top} />
                 <SafeAreaView style={MainStyles.container}>
                     <Header navigation={navigation} title="Expiring Items" />
-                    <Text>Details Screen {id}</Text>
+                    <View>{this.renderItemDetails()}</View>
                 </SafeAreaView>
             </Fragment>
         );
