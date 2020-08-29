@@ -45,7 +45,7 @@ export const resetStoreItemsList = () => {
     };
 };
 
-export const resetStoreItem = () => {
+export const resetStoreItem = (storeItemId) => {
     return (dispatch) => {
         dispatch({
             type: RESET_STORE_ITEM_DETAILS,
