@@ -21,16 +21,15 @@ class Accordion extends Component {
     }
 
     render() {
-        console.log(this.props.children);
         return (
-            <View style={{ flex: 0.2 }}>
+            <View style={{ flex: 0.3 }}>
                 <TouchableOpacity
                     onPress={() => {
                         this.toggleAccordion();
                     }}
                     style={AccordionStyles.container}
                     activeOpacity={0.9}>
-                    <Text>{this.props.title}</Text>
+                    <MediumText Align={'left'}>{this.props.title}</MediumText>
                     <FontAwesomeIcon
                         icon={
                             this.state.expanded
