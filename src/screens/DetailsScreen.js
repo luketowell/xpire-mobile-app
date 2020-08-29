@@ -4,7 +4,7 @@ import MainStyles from '../Assets/styles/MainStyles';
 import Header from '../components/Header';
 import {
     getStoreItemDetails,
-    resetStoreItem,
+    resetStoreItemDetails,
 } from '../redux/action/storeItemActions';
 import { connect } from 'react-redux';
 import DetailStyles from '../Assets/styles/pages/DetailStyles';
@@ -20,7 +20,7 @@ class DetailsScreen extends Component {
         this.beforeLeaveListener = this.props.navigation.addListener(
             'blur',
             () => {
-                this.props.resetStoreItemsList();
+                this.props.resetStoreItemDetails();
             }
         );
     }
@@ -36,6 +36,13 @@ class DetailsScreen extends Component {
         switch (storeItemDetailStatus) {
             case 'pending':
                 return <LoadingSpinner size={64} />;
+            case 'failed':
+                return (
+                    <MediumText>
+                        There has been an issue retrieving the item details.
+                        Please contact support.
+                    </MediumText>
+                );
             default:
                 return <Text>Ooops, something has gone wrong.</Text>;
         }
@@ -66,5 +73,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     getStoreItemDetails,
-    resetStoreItem,
+    resetStoreItemDetails,
 })(DetailsScreen);
