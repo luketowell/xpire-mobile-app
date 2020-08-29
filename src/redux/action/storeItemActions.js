@@ -5,6 +5,8 @@ import {
     RESET_STORE_ITEMS_LIST,
     GET_STORE_ITEM_DETAILS_PENDING,
     RESET_STORE_ITEM_DETAILS,
+    GET_STORE_ITEM_DETAILS_FAILED,
+    GET_STORE_ITEM_DETAILS_SUCCESS,
 } from '../constants';
 import request from '../../utils/Request';
 
@@ -31,11 +33,24 @@ export const getStoreItemsByCategory = (categoryId) => {
     };
 };
 
-export const getStoreItemDetails = () => {
+export const getStoreItemDetails = (storeItemId) => {
     return (dispatch) => {
         dispatch({
             type: GET_STORE_ITEM_DETAILS_PENDING,
         });
+        request(`/storeItem/id/${storeItemId}`, 'GET')
+            .then((response) => {
+                dispatch({
+                    type: GET_STORE_ITEM_DETAILS_SUCCESS,
+                    payload: response,
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: GET_STORE_ITEM_DETAILS_FAILED,
+                    payload: error,
+                });
+            });
     };
 };
 
@@ -45,7 +60,7 @@ export const resetStoreItemsList = () => {
     };
 };
 
-export const resetStoreItem = (storeItemId) => {
+export const resetStoreItemDetails = (storeItemId) => {
     return (dispatch) => {
         dispatch({
             type: RESET_STORE_ITEM_DETAILS,

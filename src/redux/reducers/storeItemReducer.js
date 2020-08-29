@@ -4,6 +4,7 @@ import {
     GET_CATEGORY_STORE_ITEMS_SUCCESS,
     RESET_STORE_ITEMS_LIST,
     GET_STORE_ITEM_DETAILS_PENDING,
+    GET_STORE_ITEM_DETAILS_FAILED,
 } from '../constants';
 
 const initialState = {
@@ -42,6 +43,12 @@ const StoreItemReducer = (state = initialState, action) => {
             return {
                 ...state,
                 storeItemDetailStatus: 'pending',
+            };
+        case GET_STORE_ITEM_DETAILS_FAILED:
+            return {
+                ...state,
+                storeItemDetailStatus: 'failed',
+                error: action.payload,
             };
         default:
             return {
