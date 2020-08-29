@@ -3,6 +3,8 @@ import {
     GET_CATEGORY_STORE_ITEMS_FAILED,
     GET_CATEGORY_STORE_ITEMS_SUCCESS,
     RESET_STORE_ITEMS_LIST,
+    GET_STORE_ITEM_DETAILS_PENDING,
+    RESET_STORE_ITEM_DETAILS,
 } from '../constants';
 import request from '../../utils/Request';
 
@@ -29,7 +31,13 @@ export const getStoreItemsByCategory = (categoryId) => {
     };
 };
 
-export const getStoreItemDetails = () => {};
+export const getStoreItemDetails = () => {
+    return (dispatch) => {
+        dispatch({
+            type: GET_STORE_ITEM_DETAILS_PENDING,
+        });
+    };
+};
 
 export const resetStoreItemsList = () => {
     return {
@@ -37,4 +45,10 @@ export const resetStoreItemsList = () => {
     };
 };
 
-export const resetStoreItem = () => {};
+export const resetStoreItem = () => {
+    return (dispatch) => {
+        dispatch({
+            type: RESET_STORE_ITEM_DETAILS,
+        });
+    };
+};
