@@ -5,9 +5,13 @@ import StoreItemCardStyle from '../Assets/styles/components/StoreItemCardStyle';
 
 class StoreItemCard extends Component {
     render() {
-        const { storeItem } = this.props;
+        const { storeItem, navigation } = this.props;
         return (
-            <TouchableOpacity style={StoreItemCardStyle.container}>
+            <TouchableOpacity
+                style={StoreItemCardStyle.container}
+                onPress={() => {
+                    navigation.navigate('Details', { id: storeItem.id });
+                }}>
                 <View>
                     <Image
                         source={{ uri: storeItem.img_url }}
