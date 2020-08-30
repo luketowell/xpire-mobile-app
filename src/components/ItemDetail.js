@@ -5,8 +5,8 @@ import ItemDetailStyle from '../Assets/styles/components/ItemDetail';
 import Accordion from './Accordion';
 import Action from './Action';
 import { primaryGreen } from '../Assets/styles/variables/variables';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
+import ActionModal from './ActionModal';
 
 const renderActions = (actions) => {
     if (actions.length > 0) {
@@ -56,19 +56,7 @@ function ItemDetail({ details, actions }) {
                 </Accordion>
                 {renderActions(actions)}
 
-                <TouchableOpacity
-                    onPress={() => {
-                        console.log('clicked');
-                    }}
-                    style={ItemDetailStyle.addActionButton}>
-                    <FontAwesomeIcon
-                        icon={faPlusCircle}
-                        size={20}
-                        color="white"
-                        style={ItemDetailStyle.buttonIcon}
-                    />
-                    <MediumText color={'white'}>Add Action</MediumText>
-                </TouchableOpacity>
+                <ActionModal />
             </ScrollView>
         </View>
     );
