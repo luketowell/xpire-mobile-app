@@ -5,6 +5,8 @@ import ItemDetailStyle from '../Assets/styles/components/ItemDetail';
 import Accordion from './Accordion';
 import Action from './Action';
 import { primaryGreen } from '../Assets/styles/variables/variables';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 const renderActions = (actions) => {
     if (actions.length > 0) {
@@ -33,7 +35,7 @@ function ItemDetail({ details, actions }) {
             <View style={ItemDetailStyle.nameContainer}>
                 <LargeText>
                     <Text style={{ textAlign: 'center', flexWrap: 'wrap' }}>
-                        McCoys Salt and Vinegar Crisps
+                        {details.name}
                     </Text>
                 </LargeText>
             </View>
@@ -58,16 +60,13 @@ function ItemDetail({ details, actions }) {
                     onPress={() => {
                         console.log('clicked');
                     }}
-                    style={{
-                        marginTop: 10,
-                        backgroundColor: primaryGreen,
-                        alignSelf: 'center',
-                        paddingHorizontal: 40,
-                        paddingVertical: 15,
-                        borderWidth: 2,
-                        borderColor: 'black',
-                        borderRadius: 6,
-                    }}>
+                    style={ItemDetailStyle.addActionButton}>
+                    <FontAwesomeIcon
+                        icon={faPlusCircle}
+                        size={20}
+                        color="white"
+                        style={ItemDetailStyle.buttonIcon}
+                    />
                     <MediumText color={'white'}>Add Action</MediumText>
                 </TouchableOpacity>
             </ScrollView>

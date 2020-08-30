@@ -1,5 +1,5 @@
 const { StyleSheet } = require('react-native');
-import { secondaryYellow } from '../variables/variables';
+import { secondaryYellow, primaryGreen } from '../variables/variables';
 
 const ItemDetailStyle = StyleSheet.create({
     container: {
@@ -27,6 +27,18 @@ const ItemDetailStyle = StyleSheet.create({
         flex: 0.6,
         overflow: 'hidden',
     },
+    addActionButton: {
+        marginTop: 10,
+        backgroundColor: primaryGreen,
+        alignSelf: 'center',
+        paddingHorizontal: 40,
+        paddingVertical: 15,
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 6,
+        flexDirection: 'row',
+    },
+    buttonIcon: { alignSelf: 'center', marginRight: 5 },
 });
 
 export default ItemDetailStyle;
