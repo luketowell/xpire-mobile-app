@@ -3,10 +3,11 @@ import { secondaryYellow } from '../variables/variables';
 
 const ItemDetailStyle = StyleSheet.create({
     container: {
-        flex: 0.7,
+        flex: 0.95,
     },
     imageContainer: {
-        flex: 0.4,
+        paddingTop: 10,
+        flex: 0.45,
         justifyContent: 'center',
     },
     image: {
@@ -19,16 +20,12 @@ const ItemDetailStyle = StyleSheet.create({
         borderRadius: 5,
     },
     nameContainer: {
-        flex: 0.17,
+        flex: 0.3,
         justifyContent: 'center',
     },
     detailsContainer: {
-        flex: 0.43,
-    },
-    detailsScrollView: {
-        backgroundColor: secondaryYellow,
-        padding: 10,
-        marginHorizontal: 10,
+        flex: 0.6,
+        overflow: 'hidden',
     },
 });
 
