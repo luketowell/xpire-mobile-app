@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Modal, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { MediumText, LargeText } from './Text';
-import { primaryGreen } from '../Assets/styles/variables/variables';
+import {
+    primaryGreen,
+    secondaryYellow,
+} from '../Assets/styles/variables/variables';
+import DatePicker from './DatePicker';
 
 class ActionModal extends Component {
     constructor(props) {
@@ -35,19 +40,52 @@ class ActionModal extends Component {
                     animationType="fade">
                     <View
                         style={{
-                            flex: 1,
+                            flex: 0.7,
+                            marginTop: 250,
                             justifyContent: 'center',
-                            alignItems: 'center',
-                            marginHorizontal: 10,
-                            marginVertical: '60%',
-                            backgroundColor: 'coral',
                             borderRadius: 20,
+                            backgroundColor: secondaryYellow,
                         }}>
-                        <LargeText>New Action</LargeText>
-                        <MediumText>
-                            <Text></Text>
-                            <Text></Text>
-                        </MediumText>
+                        <View
+                            style={{
+                                flex: 0.2,
+                            }}>
+                            <LargeText align="center">New Action</LargeText>
+                        </View>
+                        <View
+                            style={{
+                                flex: 0.7,
+                            }}>
+                            <View
+                                style={{
+                                    flexDirection: 'row',
+                                    alignContent: 'center',
+                                }}>
+                                <MediumText>Expired Count:</MediumText>
+                                <TextInput
+                                    style={{
+                                        borderColor: 'gray',
+                                        borderWidth: 1,
+                                    }}
+                                />
+                            </View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <MediumText>Status:</MediumText>
+                                <TextInput
+                                    style={{
+                                        height: 40,
+                                        borderColor: 'gray',
+                                        borderWidth: 1,
+                                    }}
+                                />
+                            </View>
+                            <DateTimePicker
+                                mode="date"
+                                display="default"
+                                value={new Date()}
+                                style={{ width: '100%' }}
+                            />
+                        </View>
                         <TouchableOpacity
                             onPress={() => {
                                 this.setState({
