@@ -1,10 +1,26 @@
 import React from 'react';
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { LargeText, MediumText } from './Text';
 import ItemDetailStyle from '../Assets/styles/components/ItemDetail';
 import Accordion from './Accordion';
+import Action from './Action';
+import { primaryGreen } from '../Assets/styles/variables/variables';
 
-function ItemDetail({ details }) {
+const renderActions = (actions) => {
+    if (actions.length > 0) {
+        return (
+            <Accordion title="Previous Actions">
+                {actions.map((action, index) => {
+                    return <Action action={action} key={index} />;
+                })}
+            </Accordion>
+        );
+    } else {
+        return null;
+    }
+};
+
+function ItemDetail({ details, actions }) {
     console.log(details);
     return (
         <View style={ItemDetailStyle.container}>
@@ -17,11 +33,11 @@ function ItemDetail({ details }) {
             <View style={ItemDetailStyle.nameContainer}>
                 <LargeText>
                     <Text style={{ textAlign: 'center', flexWrap: 'wrap' }}>
-                        {details.name}
+                        McCoys Salt and Vinegar Crisps
                     </Text>
                 </LargeText>
             </View>
-            <View style={ItemDetailStyle.detailsContainer}>
+            <ScrollView style={ItemDetailStyle.detailsContainer}>
                 <Accordion title="Item Details">
                     <MediumText align={'left'}>
                         <Text>
@@ -36,7 +52,25 @@ function ItemDetail({ details }) {
                         <Text>{details.description}</Text>
                     </MediumText>
                 </Accordion>
-            </View>
+                {renderActions(actions)}
+
+                <TouchableOpacity
+                    onPress={() => {
+                        console.log('clicked');
+                    }}
+                    style={{
+                        marginTop: 10,
+                        backgroundColor: primaryGreen,
+                        alignSelf: 'center',
+                        paddingHorizontal: 40,
+                        paddingVertical: 15,
+                        borderWidth: 2,
+                        borderColor: 'black',
+                        borderRadius: 6,
+                    }}>
+                    <MediumText color={'white'}>Add Action</MediumText>
+                </TouchableOpacity>
+            </ScrollView>
         </View>
     );
 }

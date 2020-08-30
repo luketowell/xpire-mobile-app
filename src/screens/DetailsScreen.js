@@ -49,32 +49,14 @@ class DetailsScreen extends Component {
                     </MediumText>
                 );
             case 'complete':
-                return <ItemDetail details={storeItemDetails.item} />;
+                return (
+                    <ItemDetail
+                        details={storeItemDetails.item}
+                        actions={storeItemDetails.actions}
+                    />
+                );
             default:
                 return <Text>Ooops, something has gone wrong.</Text>;
-        }
-    };
-
-    renderActions = () => {
-        const {
-            storeItemDetails,
-            storeItemDetailStatus,
-        } = this.props.storeItem;
-        if (storeItemDetailStatus === 'complete') {
-            if (storeItemDetails.actions.length > 0) {
-                console.log(storeItemDetails.actions);
-                return (
-                    <Accordion title="Previous Actions">
-                        {storeItemDetails.actions.map((action, index) => {
-                            return <Action action={action} key={index} />;
-                        })}
-                    </Accordion>
-                );
-            } else {
-                return null;
-            }
-        } else {
-            return null;
         }
     };
 
@@ -88,7 +70,6 @@ class DetailsScreen extends Component {
                     <Header navigation={navigation} title="Expiring Items" />
                     <View style={DetailStyles.Container}>
                         {this.renderItemDetails()}
-                        {this.renderActions()}
                     </View>
                 </SafeAreaView>
             </Fragment>
