@@ -7,11 +7,13 @@ import {
     GET_STORE_ITEM_DETAILS_FAILED,
     GET_STORE_ITEM_DETAILS_SUCCESS,
     RESET_STORE_ITEM_DETAILS,
+    ADD_NEW_ACTION_PENDING,
 } from '../constants';
 
 const initialState = {
     storeItemsListStatus: 'pending',
     storeItemDetailStatus: 'pending',
+    storeItemAction: '',
     storeItemList: [],
     storeItemDetails: {},
     error: '',
@@ -65,6 +67,11 @@ const StoreItemReducer = (state = initialState, action) => {
                 storeItemDetailStatus: 'pending',
                 storeItemDetails: {},
                 error: '',
+            };
+        case ADD_NEW_ACTION_PENDING:
+            return {
+                ...state,
+                storeItemActionStatus: 'pending',
             };
         default:
             return {

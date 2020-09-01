@@ -7,8 +7,14 @@ import {
     RESET_STORE_ITEM_DETAILS,
     GET_STORE_ITEM_DETAILS_FAILED,
     GET_STORE_ITEM_DETAILS_SUCCESS,
+    ADD_NEW_ACTION_PENDING,
+    ADD_NEW_ACTION_FAILED,
+    ADD_NEW_ITEM_SUCCESS,
 } from '../constants';
 import request from '../../utils/Request';
+import Action from '../../models/Action';
+import StoreItemAction from '../../models/StoreItemAction';
+import { getStores } from './configActions';
 
 export const getStoreItemsByCategory = (categoryId) => {
     return (dispatch, getState) => {
@@ -65,5 +71,32 @@ export const resetStoreItemDetails = (storeItemId) => {
         dispatch({
             type: RESET_STORE_ITEM_DETAILS,
         });
+    };
+};
+
+export const addStoreItemAction = (actionDetails) => {
+    return (dispatch, getState) => {
+        const { auth, storeItem } = getState();
+        console.log(storeItem);
+        const newAction = new Action(
+            storeItem.storeItemDetails.id,
+            auth.user.username,
+            actionDetails
+        );
+        console.log(newAction);
+        const data = new StoreItemAction(
+            storeItem.storeItemDetails.id,
+            newAction
+        );
+        dispatch({
+            type: ADD_NEW_ACTION_PENDING,
+        });
+        // request('storeitem/item/action', 'post', data)
+        //     .then((response) => {
+        //         dispatch({ type: ADD_NEW_ITEM_PENDING });
+        //     })
+        //     .catch((error) => {
+        //         dispatch({ type: ADD_NEW_ACTION_FAILED, payload: error });
+        //     });
     };
 };
