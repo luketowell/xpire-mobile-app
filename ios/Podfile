@@ -10,6 +10,8 @@ target 'xpireMobileApp' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'xpireMobileAppTests' do
     inherit! :complete
     # Pods for testing
