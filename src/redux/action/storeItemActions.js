@@ -91,12 +91,13 @@ export const addStoreItemAction = (actionDetails) => {
         dispatch({
             type: ADD_NEW_ACTION_PENDING,
         });
-        // request('storeitem/item/action', 'post', data)
-        //     .then((response) => {
-        //         dispatch({ type: ADD_NEW_ITEM_PENDING });
-        //     })
-        //     .catch((error) => {
-        //         dispatch({ type: ADD_NEW_ACTION_FAILED, payload: error });
-        //     });
+        request('storeitem/item/action', 'post', data)
+            .then((response) => {
+                //create new store item
+                //retrieve the storeItemDetails for this item.
+            })
+            .catch((error) => {
+                dispatch({ type: ADD_NEW_ACTION_FAILED, payload: error });
+            });
     };
 };

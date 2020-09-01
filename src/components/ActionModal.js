@@ -83,26 +83,6 @@ class ActionModal extends Component {
         } else {
             return (
                 <>
-                    <TouchableOpacity
-                        onPress={() => {
-                            this.setState({
-                                visible: !this.state.visible,
-                                expired_count: null,
-                                status: null,
-                                expiry_date: null,
-                            });
-                        }}
-                        style={{
-                            backgroundColor: 'primaryGreen',
-                            alignSelf: 'flex-end',
-                            borderWidth: 2,
-                            borderColor: 'black',
-                            borderRadius: 6,
-                            flexDirection: 'row',
-                            marginRight: 10,
-                        }}>
-                        <Text>close</Text>
-                    </TouchableOpacity>
                     <View style={{ flex: 0.3 }}>
                         <LargeText align="center">New Action</LargeText>
                     </View>
@@ -156,6 +136,12 @@ class ActionModal extends Component {
                     <TouchableOpacity
                         onPress={() => {
                             this.props.addStoreItemAction(this.state);
+                            this.setState({
+                                visible: !this.state.visible,
+                                expired_count: null,
+                                status: null,
+                                expiry_date: null,
+                            });
                         }}
                         style={{
                             marginTop: 10,
@@ -192,6 +178,26 @@ class ActionModal extends Component {
                             flex: 1,
                             backgroundColor: 'white',
                         }}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                this.setState({
+                                    visible: !this.state.visible,
+                                    expired_count: null,
+                                    status: null,
+                                    expiry_date: null,
+                                });
+                            }}
+                            style={{
+                                backgroundColor: 'primaryGreen',
+                                alignSelf: 'flex-end',
+                                borderWidth: 2,
+                                borderColor: 'black',
+                                borderRadius: 6,
+                                flexDirection: 'row',
+                                marginRight: 10,
+                            }}>
+                            <Text>close</Text>
+                        </TouchableOpacity>
                         {this.renderModal()}
                     </View>
                 </Modal>
