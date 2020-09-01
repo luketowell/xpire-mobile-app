@@ -34,3 +34,12 @@ export const GET_STORE_ITEM_DETAILS_SUCCESS = 'GET_STORE_ITEM_DETAILS_SUCCESS';
 
 // reset store items
 export const RESET_STORE_ITEM_DETAILS = 'RESET_STORE_ITEM_DETAILS';
+
+//add new store item action
+export const ADD_NEW_ACTION_PENDING = 'ADD_NEW_ACTION_PENDING';
+export const ADD_NEW_ACTION_FAILED = 'ADD_NEW_ACTION_FAILED';
+
+//add new action
+export const ADD_NEW_ITEM_PENDING = 'ADD_NEW_ITEM_PENDING';
+export const ADD_NEW_ITEM_SUCCESS = 'ADD_NEW_ITEM_SUCCESS';
+export const ADD_NEW_ITEM_FAILED = 'ADD_NEW_ITEM_FAILED';
