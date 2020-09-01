@@ -15,6 +15,7 @@ const initialState = {
     storeItemDetailStatus: 'pending',
     storeItemAction: '',
     storeItemList: [],
+    storeItemSearchStatus: '',
     storeItemDetails: {},
     error: '',
 };
