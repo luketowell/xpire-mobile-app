@@ -19,10 +19,50 @@ class ActionModal extends Component {
         this.state = {
             visible: false,
             expired_count: null,
-            status: null,
+            status: 1,
             expiry_date: null,
         };
     }
+
+    prepareData(data) {
+        const map = {
+            id: 'value',
+            name: 'label',
+        };
+
+        var mappedData = [];
+
+        data.map((object) => {
+            var mappedObject = _.mapKeys(object, (value, key) => {
+                return map[key];
+            });
+            mappedData.push(mappedObject);
+        });
+        return mappedData;
+    }
+
+    renderStatusPicker() {
+        const Statuses = this.prepareData(this.props.config.statuses);
+
+        return (
+            <Picker
+                selectedValue={this.state.status}
+                style={{ height: 50, width: 100 }}
+                onValueChange={(itemValue, itemIndex) =>
+                    this.setState({ status: itemValue })
+                }>
+                {Statuses.map((status) => {
+                    return (
+                        <Picker.Item
+                            label={status.label}
+                            value={status.value}
+                        />
+                    );
+                })}
+            </Picker>
+        );
+    }
+
     render() {
         return (
             <View
@@ -61,22 +101,27 @@ class ActionModal extends Component {
                                 style={{
                                     flexDirection: 'row',
                                     alignContent: 'center',
+                                    paddingBottom: 5,
                                 }}>
                                 <MediumText>Expired Count:</MediumText>
                                 <TextInput
                                     style={{
                                         borderColor: 'gray',
                                         borderWidth: 1,
+                                        width: '50%',
+                                        marginLeft: 5,
                                     }}
                                 />
+                                {this.renderStatusPicker()}
                             </View>
                             <View style={{ flexDirection: 'row' }}>
                                 <MediumText>Status:</MediumText>
                                 <TextInput
                                     style={{
-                                        height: 40,
                                         borderColor: 'gray',
                                         borderWidth: 1,
+                                        width: '50%',
+                                        marginLeft: 5,
                                     }}
                                 />
                             </View>
@@ -84,7 +129,6 @@ class ActionModal extends Component {
                                 mode="date"
                                 display="default"
                                 value={new Date()}
-                                style={{ width: '100%' }}
                             />
                         </View>
                         <TouchableOpacity
