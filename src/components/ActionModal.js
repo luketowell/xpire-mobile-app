@@ -6,6 +6,8 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import _ from 'lodash';
 import { Picker } from '@react-native-community/picker';
+import { addStoreItemAction } from '../redux/action/storeItemActions';
+import LoadingSpinner from './LoadingSpinner';
 
 import { MediumText, LargeText } from './Text';
 import {
@@ -74,6 +76,105 @@ class ActionModal extends Component {
         );
     }
 
+    renderModal() {
+        const { storeItem } = this.props;
+        if (storeItem.storeItemActionStatus === 'pending') {
+            return <LoadingSpinner size={32} />;
+        } else {
+            return (
+                <>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.setState({
+                                visible: !this.state.visible,
+                                expired_count: null,
+                                status: null,
+                                expiry_date: null,
+                            });
+                        }}
+                        style={{
+                            backgroundColor: 'primaryGreen',
+                            alignSelf: 'flex-end',
+                            borderWidth: 2,
+                            borderColor: 'black',
+                            borderRadius: 6,
+                            flexDirection: 'row',
+                            marginRight: 10,
+                        }}>
+                        <Text>close</Text>
+                    </TouchableOpacity>
+                    <View style={{ flex: 0.3 }}>
+                        <LargeText align="center">New Action</LargeText>
+                    </View>
+                    <View style={{}}>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                paddingBottom: 10,
+                            }}>
+                            <MediumText align={'left'}>
+                                Expired Count:
+                            </MediumText>
+                            <TextInput
+                                style={{
+                                    width: '50%',
+                                    marginLeft: 10,
+                                    fontSize: 20,
+                                    borderWidth: 1,
+                                    borderColor: 'grey',
+                                    borderRadius: 5,
+                                }}
+                                value={this.state.expired_count}
+                                keyboardType="numeric"
+                                onChangeText={(text) => {
+                                    this.setState({ expired_count: text });
+                                }}
+                            />
+                        </View>
+                        {this.renderStatusPicker()}
+                        <View style={{}}>
+                            <MediumText align="left">
+                                Next Expiry Date:
+                            </MediumText>
+                            <DateTimePicker
+                                style={{}}
+                                mode="date"
+                                display="default"
+                                value={
+                                    this.state.expiry_date
+                                        ? this.state.expiry_date
+                                        : new Date()
+                                }
+                                onChange={(event, selectedDate) => {
+                                    this.setState({
+                                        expiry_date: selectedDate,
+                                    });
+                                }}
+                            />
+                        </View>
+                    </View>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.props.addStoreItemAction(this.state);
+                        }}
+                        style={{
+                            marginTop: 10,
+                            backgroundColor: 'primaryGreen',
+                            alignSelf: 'center',
+                            paddingHorizontal: 40,
+                            paddingVertical: 15,
+                            borderWidth: 2,
+                            borderColor: 'black',
+                            borderRadius: 6,
+                            flexDirection: 'row',
+                        }}>
+                        <Text>Submit</Text>
+                    </TouchableOpacity>
+                </>
+            );
+        }
+    }
+
     render() {
         return (
             <View style={{}}>
@@ -91,93 +192,7 @@ class ActionModal extends Component {
                             flex: 1,
                             backgroundColor: 'white',
                         }}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                this.setState({
-                                    visible: !this.state.visible,
-                                    expired_count: null,
-                                    status: null,
-                                    expiry_date: null,
-                                });
-                            }}
-                            style={{
-                                backgroundColor: 'primaryGreen',
-                                alignSelf: 'flex-end',
-                                borderWidth: 2,
-                                borderColor: 'black',
-                                borderRadius: 6,
-                                flexDirection: 'row',
-                                marginRight: 10,
-                            }}>
-                            <Text>close</Text>
-                        </TouchableOpacity>
-                        <View style={{ flex: 0.3 }}>
-                            <LargeText align="center">New Action</LargeText>
-                        </View>
-                        <View style={{}}>
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    paddingBottom: 10,
-                                }}>
-                                <MediumText align={'left'}>
-                                    Expired Count:
-                                </MediumText>
-                                <TextInput
-                                    style={{
-                                        width: '50%',
-                                        marginLeft: 10,
-                                        fontSize: 20,
-                                        borderWidth: 1,
-                                        borderColor: 'grey',
-                                        borderRadius: 5,
-                                    }}
-                                    value={this.state.expired_count}
-                                    keyboardType="numeric"
-                                    onChangeText={(text) => {
-                                        this.setState({ expired_count: text });
-                                    }}
-                                />
-                            </View>
-                            {this.renderStatusPicker()}
-                            <View style={{}}>
-                                <MediumText align="left">
-                                    Next Expiry Date:
-                                </MediumText>
-                                <DateTimePicker
-                                    style={{}}
-                                    mode="date"
-                                    display="default"
-                                    value={
-                                        this.state.expiry_date
-                                            ? this.state.expiry_date
-                                            : new Date()
-                                    }
-                                    onChange={(event, selectedDate) => {
-                                        this.setState({
-                                            expiry_date: selectedDate,
-                                        });
-                                    }}
-                                />
-                            </View>
-                        </View>
-                        <TouchableOpacity
-                            onPress={() => {
-                                console.log(this.state);
-                            }}
-                            style={{
-                                marginTop: 10,
-                                backgroundColor: 'primaryGreen',
-                                alignSelf: 'center',
-                                paddingHorizontal: 40,
-                                paddingVertical: 15,
-                                borderWidth: 2,
-                                borderColor: 'black',
-                                borderRadius: 6,
-                                flexDirection: 'row',
-                            }}>
-                            <Text>Submit</Text>
-                        </TouchableOpacity>
+                        {this.renderModal()}
                     </View>
                 </Modal>
                 <TouchableOpacity
@@ -211,7 +226,8 @@ class ActionModal extends Component {
 const mapStateToProps = (state) => {
     return {
         config: state.config,
+        storeItem: state.storeItem,
     };
 };
 
-export default connect(mapStateToProps)(ActionModal);
+export default connect(mapStateToProps, { addStoreItemAction })(ActionModal);
