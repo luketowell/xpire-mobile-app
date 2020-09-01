@@ -9,6 +9,10 @@ import {
     RESET_STORE_ITEM_DETAILS,
     ADD_NEW_ACTION_PENDING,
     FIND_STORE_ITEM_BY_UPC_PENDING,
+    FIND_STORE_ITEM_BY_UPC_NOT_FOUND,
+    FIND_STORE_ITEM_BY_UPC_FAILED,
+    RESET_FIND_STORE_ITEM,
+    FIND_STORE_ITEM_BY_UPC_SUCCESS,
 } from '../constants';
 
 const initialState = {
@@ -79,6 +83,28 @@ const StoreItemReducer = (state = initialState, action) => {
             return {
                 ...state,
                 storeItemSearchStatus: 'pending',
+            };
+        case FIND_STORE_ITEM_BY_UPC_FAILED:
+            return {
+                ...state,
+                storeItemSearchStatus: 'failed',
+            };
+        case FIND_STORE_ITEM_BY_UPC_NOT_FOUND:
+            return {
+                ...state,
+                storeItemSearchStatus: 'not found',
+            };
+        case FIND_STORE_ITEM_BY_UPC_SUCCESS:
+            return {
+                ...state,
+                storeItemSearchStatus: 'complete',
+                storeItemList: action.payload,
+            };
+        case RESET_FIND_STORE_ITEM:
+            return {
+                ...state,
+                storeItemList: [],
+                storeItemSearchStatus: '',
             };
         default:
             return {
