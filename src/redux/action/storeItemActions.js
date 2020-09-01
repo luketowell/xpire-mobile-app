@@ -11,6 +11,10 @@ import {
     ADD_NEW_ACTION_FAILED,
     ADD_NEW_ITEM_SUCCESS,
     FIND_STORE_ITEM_BY_UPC_PENDING,
+    FIND_STORE_ITEM_BY_UPC_SUCCESS,
+    FIND_STORE_ITEM_BY_UPC_FAILED,
+    FIND_STORE_ITEM_BY_UPC_NOT_FOUND,
+    RESET_FIND_STORE_ITEM,
 } from '../constants';
 import request from '../../utils/Request';
 import Action from '../../models/Action';
@@ -43,9 +47,39 @@ export const getStoreItemsByCategory = (categoryId) => {
 export const getStoreItemByUPC = (itemUpc) => {
     return (dispatch, getState) => {
         const { storeNumber } = getState().auth.user;
+        console.log(storeNumber);
+        console.log(itemUpc);
 
         dispatch({
             type: FIND_STORE_ITEM_BY_UPC_PENDING,
+        });
+        request(`/storeitemsummary/findItem/${storeNumber}/${itemUpc}`, 'GET')
+            .then((response) => {
+                if (response.length === 0) {
+                    console.log(response.length);
+                    dispatch({
+                        type: FIND_STORE_ITEM_BY_UPC_NOT_FOUND,
+                    });
+                } else {
+                    dispatch({
+                        type: FIND_STORE_ITEM_BY_UPC_SUCCESS,
+                        payload: response,
+                    });
+                }
+            })
+            .catch((error) => {
+                dispatch({
+                    type: FIND_STORE_ITEM_BY_UPC_FAILED,
+                    payload: error,
+                });
+            });
+    };
+};
+
+export const resetStoreItemByUPC = () => {
+    return (dispatch) => {
+        dispatch({
+            type: RESET_FIND_STORE_ITEM,
         });
     };
 };
