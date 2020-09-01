@@ -45,33 +45,38 @@ class ActionModal extends Component {
         const Statuses = this.prepareData(this.props.config.statuses);
 
         return (
-            <Picker
-                selectedValue={this.state.status}
-                style={{ height: 50, width: 100 }}
-                onValueChange={(itemValue, itemIndex) =>
-                    this.setState({ status: itemValue })
-                }>
-                {Statuses.map((status) => {
-                    return (
-                        <Picker.Item
-                            label={status.label}
-                            value={status.value}
-                        />
-                    );
-                })}
-            </Picker>
+            <View style={{ flexDirection: 'row' }}>
+                <MediumText>Status:</MediumText>
+                <Picker
+                    selectedValue={this.state.status}
+                    style={{
+                        width: '50%',
+                        padding: 0,
+                        marginLeft: 50,
+                        marginBottom: 50,
+                        alignSelf: 'center',
+                        overflow: 'hidden',
+                        backgroundColor: secondaryYellow,
+                    }}
+                    onValueChange={(itemValue, itemIndex) =>
+                        this.setState({ status: itemValue })
+                    }>
+                    {Statuses.map((status) => {
+                        return (
+                            <Picker.Item
+                                label={status.label}
+                                value={status.value}
+                            />
+                        );
+                    })}
+                </Picker>
+            </View>
         );
     }
 
     render() {
         return (
-            <View
-                style={{
-                    flex: 0.5,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: 22,
-                }}>
+            <View style={{}}>
                 <Modal
                     visible={this.state.visible}
                     onRequestClose={() => {
@@ -81,56 +86,11 @@ class ActionModal extends Component {
                     animationType="fade">
                     <View
                         style={{
-                            flex: 0.7,
-                            marginTop: 250,
-                            justifyContent: 'center',
-                            borderRadius: 20,
-                            backgroundColor: secondaryYellow,
+                            paddingLeft: 10,
+                            paddingTop: 100,
+                            flex: 1,
+                            backgroundColor: 'white',
                         }}>
-                        <View
-                            style={{
-                                flex: 0.2,
-                            }}>
-                            <LargeText align="center">New Action</LargeText>
-                        </View>
-                        <View
-                            style={{
-                                flex: 0.7,
-                            }}>
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    alignContent: 'center',
-                                    paddingBottom: 5,
-                                }}>
-                                <MediumText>Expired Count:</MediumText>
-                                <TextInput
-                                    style={{
-                                        borderColor: 'gray',
-                                        borderWidth: 1,
-                                        width: '50%',
-                                        marginLeft: 5,
-                                    }}
-                                />
-                                {this.renderStatusPicker()}
-                            </View>
-                            <View style={{ flexDirection: 'row' }}>
-                                <MediumText>Status:</MediumText>
-                                <TextInput
-                                    style={{
-                                        borderColor: 'gray',
-                                        borderWidth: 1,
-                                        width: '50%',
-                                        marginLeft: 5,
-                                    }}
-                                />
-                            </View>
-                            <DateTimePicker
-                                mode="date"
-                                display="default"
-                                value={new Date()}
-                            />
-                        </View>
                         <TouchableOpacity
                             onPress={() => {
                                 this.setState({
@@ -139,6 +99,82 @@ class ActionModal extends Component {
                                     status: null,
                                     expiry_date: null,
                                 });
+                            }}
+                            style={{
+                                backgroundColor: 'primaryGreen',
+                                alignSelf: 'flex-end',
+                                borderWidth: 2,
+                                borderColor: 'black',
+                                borderRadius: 6,
+                                flexDirection: 'row',
+                                marginRight: 10,
+                            }}>
+                            <Text>close</Text>
+                        </TouchableOpacity>
+                        <View style={{ flex: 0.3 }}>
+                            <LargeText align="center">New Action</LargeText>
+                        </View>
+                        <View style={{}}>
+                            <View
+                                style={{
+                                    flexDirection: 'row',
+                                    paddingBottom: 10,
+                                }}>
+                                <MediumText align={'left'}>
+                                    Expired Count:
+                                </MediumText>
+                                <TextInput
+                                    style={{
+                                        width: '50%',
+                                        marginLeft: 10,
+                                        fontSize: 20,
+                                        borderWidth: 1,
+                                        borderColor: 'grey',
+                                        borderRadius: 5,
+                                    }}
+                                    value={this.state.expired_count}
+                                    keyboardType="numeric"
+                                    onChangeText={(text) => {
+                                        this.setState({ expired_count: text });
+                                    }}
+                                />
+                            </View>
+                            {this.renderStatusPicker()}
+                            <View style={{}}>
+                                <MediumText align="left">
+                                    Next Expiry Date:
+                                </MediumText>
+                                <DateTimePicker
+                                    style={{}}
+                                    mode="date"
+                                    display="default"
+                                    value={
+                                        this.state.expiry_date
+                                            ? this.state.expiry_date
+                                            : new Date()
+                                    }
+                                    onChange={(event, selectedDate) => {
+                                        this.setState({
+                                            expiry_date: selectedDate,
+                                        });
+                                    }}
+                                />
+                            </View>
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => {
+                                console.log(this.state);
+                            }}
+                            style={{
+                                marginTop: 10,
+                                backgroundColor: 'primaryGreen',
+                                alignSelf: 'center',
+                                paddingHorizontal: 40,
+                                paddingVertical: 15,
+                                borderWidth: 2,
+                                borderColor: 'black',
+                                borderRadius: 6,
+                                flexDirection: 'row',
                             }}>
                             <Text>Submit</Text>
                         </TouchableOpacity>

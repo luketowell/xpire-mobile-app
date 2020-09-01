@@ -24,8 +24,7 @@ const ItemDetailStyle = StyleSheet.create({
         justifyContent: 'center',
     },
     detailsContainer: {
-        flex: 0.6,
-        overflow: 'hidden',
+        flex: 1,
     },
 });
 
