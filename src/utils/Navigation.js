@@ -7,6 +7,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import LoadingScreen from '../screens/LoadingScreen';
 import StoreItemScreen from '../screens/StoreItemScreen';
+import ScannerScreen from '../screens/ScannerScreen';
 import { connect } from 'react-redux';
 
 const Drawer = createDrawerNavigator();
@@ -15,6 +16,7 @@ function AuthedLinks() {
     return (
         <Drawer.Navigator>
             <Drawer.Screen name="Home" component={HomeScreen} />
+            <Drawer.Screen name="Scanner" component={ScannerScreen} />
             <Drawer.Screen name="Details" component={DetailsScreen} />
             <Drawer.Screen name="Items" component={StoreItemScreen} />
         </Drawer.Navigator>
