@@ -18,7 +18,11 @@ import {
 } from '../Assets/styles/variables/variables';
 import { MediumText } from '../components/Text';
 import { connect } from 'react-redux';
-import { getStoreItemByUPC } from '../redux/action/storeItemActions';
+import {
+    getStoreItemByUPC,
+    resetStoreItemByUPC,
+} from '../redux/action/storeItemActions';
+import StoreItemList from '../components/StoreItemList';
 
 class ScannerScreen extends PureComponent {
     constructor(props) {
@@ -29,8 +33,21 @@ class ScannerScreen extends PureComponent {
         };
     }
 
+    componentDidMount() {
+        this.beforeLeaveListener = this.props.navigation.addListener(
+            'blur',
+            () => {
+                this.props.resetStoreItemByUPC();
+            }
+        );
+    }
+
+    componentWillUnmount() {
+        this.beforeLeaveListener.remove();
+    }
+
     renderResults() {
-        const { storeItemSearchStatus } = this.props.storeItem;
+        const { storeItemSearchStatus, storeItemList } = this.props.storeItem;
 
         if (storeItemSearchStatus === 'pending') {
             return (
@@ -79,9 +96,10 @@ class ScannerScreen extends PureComponent {
                             <Text>Yes</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() =>
-                                this.setState({ isBarcodeRead: false })
-                            }
+                            onPress={() => {
+                                this.setState({ isBarcodeRead: false });
+                                this.props.resetStoreItemByUPC();
+                            }}
                             style={{
                                 marginTop: 10,
                                 backgroundColor: 'coral',
@@ -107,18 +125,56 @@ class ScannerScreen extends PureComponent {
                 </MediumText>
             );
         }
+        if (storeItemSearchStatus === 'complete') {
+            return (
+                <StoreItemList
+                    storeItems={storeItemList}
+                    navigation={this.props.navigation}
+                />
+            );
+        }
         return (
             <MediumText>
                 Please scan an item barcode to find expiry information.
             </MediumText>
         );
     }
+
+    renderResetButton() {
+        if (this.state.isBarcodeRead) {
+            return (
+                <TouchableOpacity
+                    onPress={() => {
+                        this.setState({ isBarcodeRead: false });
+                        this.props.resetStoreItemByUPC();
+                    }}
+                    style={{
+                        marginTop: 10,
+                        backgroundColor: 'coral',
+                        alignSelf: 'center',
+                        paddingHorizontal: 40,
+                        paddingVertical: 15,
+                        borderWidth: 2,
+                        borderColor: 'black',
+                        borderRadius: 6,
+                        flexDirection: 'row',
+                    }}>
+                    <Text>Scan</Text>
+                </TouchableOpacity>
+            );
+        } else {
+            return null;
+        }
+    }
     render() {
         return (
             <Fragment>
                 <SafeAreaView style={MainStyles.top} />
                 <SafeAreaView style={MainStyles.container}>
-                    <Header title="Scanner" />
+                    <Header
+                        title="Scanner"
+                        navigation={this.props.navigation}
+                    />
                     <View style={styles.container}>
                         <RNCamera
                             ref={(ref) => {
@@ -148,7 +204,7 @@ class ScannerScreen extends PureComponent {
                                     this.setState({
                                         detectedBarcode: barcode.data,
                                     });
-                                    this.props.getStoreItemByUPC();
+                                    this.props.getStoreItemByUPC(barcode.data);
                                 }
                             }}
                         />
@@ -158,8 +214,15 @@ class ScannerScreen extends PureComponent {
                             flex: 0.6,
                             backgroundColor: secondaryGreen,
                         }}>
-                        {/* //barcode scanner results */}
-                        <MediumText>Scanned Results</MediumText>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-evenly',
+                            }}>
+                            <MediumText>Scanned Results</MediumText>
+                            {this.renderResetButton()}
+                        </View>
+
                         <View
                             style={{
                                 flex: 1,
@@ -204,4 +267,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { getStoreItemByUPC })(ScannerScreen);
+export default connect(mapStateToProps, {
+    getStoreItemByUPC,
+    resetStoreItemByUPC,
+})(ScannerScreen);
