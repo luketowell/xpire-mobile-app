@@ -93,6 +93,7 @@ export const addStoreItemAction = (actionDetails) => {
         });
         request('storeitem/item/action', 'post', data)
             .then((response) => {
+                //stop spinner
                 //create new store item
                 //retrieve the storeItemDetails for this item.
             })
