@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
     TouchableOpacity,
