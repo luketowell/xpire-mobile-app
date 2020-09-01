@@ -10,6 +10,7 @@ import {
     ADD_NEW_ACTION_PENDING,
     ADD_NEW_ACTION_FAILED,
     ADD_NEW_ITEM_SUCCESS,
+    FIND_STORE_ITEM_BY_UPC_PENDING,
 } from '../constants';
 import request from '../../utils/Request';
 import Action from '../../models/Action';
@@ -36,6 +37,16 @@ export const getStoreItemsByCategory = (categoryId) => {
                     payload: error.message,
                 });
             });
+    };
+};
+
+export const getStoreItemByUPC = (itemUpc) => {
+    return (dispatch, getState) => {
+        const { storeNumber } = getState().auth.user;
+
+        dispatch({
+            type: FIND_STORE_ITEM_BY_UPC_PENDING,
+        });
     };
 };
 

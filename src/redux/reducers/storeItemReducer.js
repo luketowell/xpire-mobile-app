@@ -8,6 +8,7 @@ import {
     GET_STORE_ITEM_DETAILS_SUCCESS,
     RESET_STORE_ITEM_DETAILS,
     ADD_NEW_ACTION_PENDING,
+    FIND_STORE_ITEM_BY_UPC_PENDING,
 } from '../constants';
 
 const initialState = {
@@ -73,6 +74,11 @@ const StoreItemReducer = (state = initialState, action) => {
             return {
                 ...state,
                 storeItemActionStatus: 'pending',
+            };
+        case FIND_STORE_ITEM_BY_UPC_PENDING:
+            return {
+                ...state,
+                storeItemSearchStatus: 'pending',
             };
         default:
             return {

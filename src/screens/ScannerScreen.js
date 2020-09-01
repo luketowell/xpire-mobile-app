@@ -18,6 +18,7 @@ import {
 } from '../Assets/styles/variables/variables';
 import { MediumText } from '../components/Text';
 import { connect } from 'react-redux';
+import { getStoreItemByUPC } from '../redux/action/storeItemActions';
 
 class ScannerScreen extends PureComponent {
     constructor(props) {
@@ -147,6 +148,7 @@ class ScannerScreen extends PureComponent {
                                     this.setState({
                                         detectedBarcode: barcode.data,
                                     });
+                                    this.props.getStoreItemByUPC();
                                 }
                             }}
                         />
@@ -202,4 +204,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {})(ScannerScreen);
+export default connect(mapStateToProps, { getStoreItemByUPC })(ScannerScreen);
