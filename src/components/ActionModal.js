@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import _ from 'lodash';
+import { Picker } from '@react-native-community/picker';
 
 import { MediumText, LargeText } from './Text';
 import {
     primaryGreen,
     secondaryYellow,
 } from '../Assets/styles/variables/variables';
-import DatePicker from './DatePicker';
 
 class ActionModal extends Component {
     constructor(props) {
