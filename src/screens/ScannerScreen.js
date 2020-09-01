@@ -124,6 +124,7 @@ class ScannerScreen extends PureComponent {
                                 this.camera = ref;
                             }}
                             style={styles.preview}
+                            captureAudio={false}
                             type={RNCamera.Constants.Type.back}
                             flashMode={RNCamera.Constants.FlashMode.on}
                             androidCameraPermissionOptions={{
