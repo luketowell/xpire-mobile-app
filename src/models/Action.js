@@ -4,7 +4,7 @@ class Action {
             (this.user_id = username),
             (this.status_id = actionDetails.status),
             (this.expired_count = actionDetails.expired_count),
-            (this.createdDate = new Date());
+            (this.created_date = new Date());
     }
 }
 
