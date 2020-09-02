@@ -9,6 +9,7 @@ import LoadingScreen from '../screens/LoadingScreen';
 import StoreItemScreen from '../screens/StoreItemScreen';
 import ScannerScreen from '../screens/ScannerScreen';
 import { connect } from 'react-redux';
+import NewItemScreen from '../screens/NewItemScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,6 +20,7 @@ function AuthedLinks() {
             <Drawer.Screen name="Scanner" component={ScannerScreen} />
             <Drawer.Screen name="Details" component={DetailsScreen} />
             <Drawer.Screen name="Items" component={StoreItemScreen} />
+            <Drawer.Screen name="NewItem" component={NewItemScreen} />
         </Drawer.Navigator>
     );
 }
