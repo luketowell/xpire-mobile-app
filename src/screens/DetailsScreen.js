@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import {
     getStoreItemDetails,
     resetStoreItemDetails,
+    addNewStoreItem,
 } from '../redux/action/storeItemActions';
 import { connect } from 'react-redux';
 import DetailStyles from '../Assets/styles/pages/DetailStyles';
@@ -20,7 +21,7 @@ class DetailsScreen extends Component {
             let { id, expiry_date, newItem } = this.props.route.params;
             if (newItem) {
                 //add new item
-                console.log(id, expiry_date);
+                this.props.addNewStoreItem(id, expiry_date);
             } else {
                 this.props.getStoreItemDetails(id);
             }
@@ -91,4 +92,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     getStoreItemDetails,
     resetStoreItemDetails,
+    addNewStoreItem,
 })(DetailsScreen);
