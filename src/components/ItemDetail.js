@@ -23,7 +23,6 @@ const renderActions = (actions) => {
 };
 
 function ItemDetail({ details, actions }) {
-    console.log(details);
     return (
         <View style={ItemDetailStyle.container}>
             <View style={ItemDetailStyle.imageContainer}>
