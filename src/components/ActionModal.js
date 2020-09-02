@@ -23,6 +23,7 @@ class ActionModal extends Component {
             expired_count: null,
             status: 1,
             expiry_date: null,
+            showDatePicker: false,
         };
     }
 
@@ -116,21 +117,29 @@ class ActionModal extends Component {
                             <MediumText align="left">
                                 Next Expiry Date:
                             </MediumText>
-                            <DateTimePicker
-                                style={{}}
-                                mode="date"
-                                display="default"
-                                value={
-                                    this.state.expiry_date
-                                        ? this.state.expiry_date
-                                        : new Date()
-                                }
-                                onChange={(event, selectedDate) => {
-                                    this.setState({
-                                        expiry_date: selectedDate,
-                                    });
-                                }}
-                            />
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.setState({ showDatePicker: true });
+                                }}>
+                                <Text>add date</Text>
+                            </TouchableOpacity>
+                            {this.state.showDatePicker && (
+                                <DateTimePicker
+                                    mode="date"
+                                    display="default"
+                                    value={
+                                        this.state.expiry_date
+                                            ? this.state.expiry_date
+                                            : new Date()
+                                    }
+                                    onChange={(event, selectedDate) => {
+                                        this.setState({
+                                            expiry_date: selectedDate,
+                                            showDatePicker: false,
+                                        });
+                                    }}
+                                />
+                            )}
                         </View>
                     </View>
                     <TouchableOpacity
