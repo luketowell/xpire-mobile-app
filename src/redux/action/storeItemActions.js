@@ -15,11 +15,13 @@ import {
     FIND_STORE_ITEM_BY_UPC_FAILED,
     FIND_STORE_ITEM_BY_UPC_NOT_FOUND,
     RESET_FIND_STORE_ITEM,
+    ADD_NEW_ITEM_FAILED,
 } from '../constants';
 import request from '../../utils/Request';
 import Action from '../../models/Action';
 import StoreItemAction from '../../models/StoreItemAction';
 import { getStores } from './configActions';
+import StoreItem from '../../models/StoreItem';
 
 export const getStoreItemsByCategory = (categoryId) => {
     return (dispatch, getState) => {
@@ -133,17 +135,52 @@ export const addStoreItemAction = (actionDetails) => {
             storeItem.storeItemDetails.id,
             newAction
         );
+        console.log(data);
         dispatch({
             type: ADD_NEW_ACTION_PENDING,
         });
         request('storeitem/item/action', 'post', data)
             .then((response) => {
+                console.log(response);
                 //stop spinner
                 //create new store item
                 //retrieve the storeItemDetails for this item.
             })
             .catch((error) => {
                 dispatch({ type: ADD_NEW_ACTION_FAILED, payload: error });
+            });
+    };
+};
+
+export const addNewStoreItem = (barcode, expiry_date) => {
+    return (dispatch, getState) => {
+        const { storeNumber } = getState().auth.user;
+
+        const newStoreItem = new StoreItem(
+            barcode,
+            expiry_date,
+            storeNumber,
+            null
+        );
+
+        const data = {};
+        data.item_upc = parseInt(barcode);
+        data.storeId = storeNumber;
+        data.expiry_date = '2020-09-04';
+        data.created_date = '2020-09-02';
+        data.updated_date = null;
+        console.log(data);
+        request(`/storeitem/new`, 'post', data)
+            .then((response) => {
+                console.log(response.id);
+                dispatch(getStoreItemDetails(response.id));
+            })
+            .catch((error) => {
+                console.log(error);
+                dispatch({
+                    type: ADD_NEW_ITEM_FAILED,
+                    payload: error,
+                });
             });
     };
 };
