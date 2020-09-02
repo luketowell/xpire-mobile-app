@@ -1,8 +1,8 @@
 class StoreItemAction {
     constructor(id, action) {
         (this.id = id),
-            (this.updatedDate = new Date()),
-            (this.action = [action]);
+            (this.updated_date = new Date()),
+            (this.actions = [action]);
     }
 }
 
