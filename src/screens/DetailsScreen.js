@@ -17,8 +17,13 @@ import Action from '../components/Action';
 class DetailsScreen extends Component {
     componentDidMount() {
         this.focusListener = this.props.navigation.addListener('focus', () => {
-            let { id } = this.props.route.params;
-            this.props.getStoreItemDetails(id);
+            let { id, expiry_date, newItem } = this.props.route.params;
+            if (newItem) {
+                //add new item
+                console.log(id, expiry_date);
+            } else {
+                this.props.getStoreItemDetails(id);
+            }
         });
         this.beforeLeaveListener = this.props.navigation.addListener(
             'blur',
