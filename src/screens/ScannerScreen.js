@@ -36,6 +36,10 @@ class ScannerScreen extends PureComponent {
         this.beforeLeaveListener = this.props.navigation.addListener(
             'blur',
             () => {
+                this.setState({
+                    isBarcodeRead: false,
+                    detectedBarcode: '',
+                });
                 this.props.resetStoreItemByUPC();
             }
         );
@@ -47,6 +51,7 @@ class ScannerScreen extends PureComponent {
 
     renderResults() {
         const { storeItemSearchStatus, storeItemList } = this.props.storeItem;
+        const { navigation } = this.props;
 
         if (storeItemSearchStatus === 'pending') {
             return (
@@ -78,7 +83,9 @@ class ScannerScreen extends PureComponent {
                         }}>
                         <TouchableOpacity
                             onPress={() => {
-                                alert('add store item!');
+                                navigation.navigate('NewItem', {
+                                    detectedBarcode: this.state.detectedBarcode,
+                                });
                             }}
                             style={{
                                 marginTop: 10,
@@ -128,7 +135,7 @@ class ScannerScreen extends PureComponent {
             return (
                 <StoreItemList
                     storeItems={storeItemList}
-                    navigation={this.props.navigation}
+                    navigation={navigation}
                 />
             );
         }
@@ -165,6 +172,7 @@ class ScannerScreen extends PureComponent {
             return null;
         }
     }
+
     render() {
         return (
             <Fragment>
