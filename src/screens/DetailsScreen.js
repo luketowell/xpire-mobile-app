@@ -17,9 +17,10 @@ import Action from '../components/Action';
 
 class DetailsScreen extends Component {
     componentDidMount() {
+        console.log(this.props.route.params);
         this.focusListener = this.props.navigation.addListener('focus', () => {
             let { id, expiry_date, newItem } = this.props.route.params;
-            if (newItem) {
+            if (newItem == true) {
                 //add new item
                 this.props.addNewStoreItem(id, expiry_date);
             } else {

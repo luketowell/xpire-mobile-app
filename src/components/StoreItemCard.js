@@ -10,7 +10,10 @@ class StoreItemCard extends Component {
             <TouchableOpacity
                 style={StoreItemCardStyle.container}
                 onPress={() => {
-                    navigation.navigate('Details', { id: storeItem.id });
+                    navigation.navigate('Details', {
+                        id: storeItem.id,
+                        newItem: false,
+                    });
                 }}>
                 <View>
                     <Image
