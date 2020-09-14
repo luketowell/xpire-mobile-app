@@ -1,7 +1,7 @@
-import { MediumText } from '../components/Text';
 import React, { Component } from 'react';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
 import StoreItemCardStyle from '../Assets/styles/components/StoreItemCardStyle';
+import { SmallText } from '../components/Text';
 
 class StoreItemCard extends Component {
     render() {
@@ -22,7 +22,7 @@ class StoreItemCard extends Component {
                     />
                 </View>
                 <View style={StoreItemCardStyle.textContainer}>
-                    <MediumText>
+                    <SmallText>
                         <Text style={{ textAlign: 'left' }}>
                             Name: {storeItem.name}
                             {'\n'}
@@ -30,7 +30,7 @@ class StoreItemCard extends Component {
                         <Text style={{ textAlign: 'left' }}>
                             UPC: {storeItem.item_upc}
                         </Text>
-                    </MediumText>
+                    </SmallText>
                 </View>
             </TouchableOpacity>
         );
