@@ -6,8 +6,9 @@ const ItemDetailStyle = StyleSheet.create({
         flex: 0.95,
     },
     imageContainer: {
+        marginTop: 25,
         paddingTop: 10,
-        flex: 0.45,
+        flex: 0.4,
         justifyContent: 'center',
     },
     image: {
@@ -20,11 +21,13 @@ const ItemDetailStyle = StyleSheet.create({
         borderRadius: 5,
     },
     nameContainer: {
-        flex: 0.3,
+        marginTop: 30,
+        paddingTop: 10,
+        flex: 0.4,
         justifyContent: 'center',
     },
     detailsContainer: {
-        flex: 1,
+        flex: 0.5,
     },
 });
 
