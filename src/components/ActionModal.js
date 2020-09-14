@@ -231,7 +231,7 @@ class ActionModal extends Component {
                         color="white"
                         style={{ alignSelf: 'center', marginRight: 5 }}
                     />
-                    <MediumText color="white">Open Modal</MediumText>
+                    <MediumText color="white">New Action</MediumText>
                 </TouchableOpacity>
             </View>
         );
