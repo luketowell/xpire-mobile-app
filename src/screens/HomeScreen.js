@@ -51,7 +51,7 @@ function HomeScreen({ navigation }) {
                         <MediumText align={'left'}>By Category:</MediumText>
                     </View>
                 </View>
-                <View style={{ flex: 0.6 }}>
+                <View style={{ flex: 0.5 }}>
                     <CategoryList navigation={navigation} />
                 </View>
             </SafeAreaView>
