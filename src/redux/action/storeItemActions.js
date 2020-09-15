@@ -155,21 +155,10 @@ export const addStoreItemAction = (actionDetails) => {
 export const addNewStoreItem = (barcode, expiry_date) => {
     return (dispatch, getState) => {
         const { storeNumber } = getState().auth.user;
+        console.log(expiry_date.toUTCString());
 
-        const newStoreItem = new StoreItem(
-            barcode,
-            expiry_date,
-            storeNumber,
-            null
-        );
+        const data = new StoreItem(barcode, expiry_date, storeNumber, null);
 
-        const data = {};
-        data.item_upc = parseInt(barcode);
-        data.storeId = storeNumber;
-        data.expiry_date = '2020-09-04';
-        data.created_date = '2020-09-02';
-        data.updated_date = null;
-        console.log(data);
         request(`/storeitem/new`, 'post', data)
             .then((response) => {
                 console.log(response.id);
