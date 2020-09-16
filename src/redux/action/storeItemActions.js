@@ -27,10 +27,14 @@ export const getStoreItemsByCategory = (categoryId) => {
     return (dispatch, getState) => {
         const { auth } = getState();
         let { storeNumber } = auth.user;
+        const todaysDate = new Date().toISOString().split('T')[0];
         dispatch({
             type: GET_CATEGORY_STORE_ITEMS_PENDING,
         });
-        request(`/storeitemsummary/${storeNumber}/${categoryId}`, 'GET')
+        request(
+            `/storeitemsummary/${storeNumber}/${categoryId}/${todaysDate}`,
+            'GET'
+        )
             .then((response) => {
                 dispatch({
                     type: GET_CATEGORY_STORE_ITEMS_SUCCESS,
