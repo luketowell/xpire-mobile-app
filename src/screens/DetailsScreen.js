@@ -58,6 +58,7 @@ class DetailsScreen extends Component {
             case 'complete':
                 return (
                     <ItemDetail
+                        expiryDate={storeItemDetails.expiry_date}
                         details={storeItemDetails.item}
                         actions={storeItemDetails.actions}
                     />

@@ -28,6 +28,11 @@ class StoreItemCard extends Component {
                             {'\n'}
                         </Text>
                         <Text style={{ textAlign: 'left' }}>
+                            Expiry Date:{' '}
+                            {new Date(storeItem.expiry_date).toDateString()}
+                            {'\n'}
+                        </Text>
+                        <Text style={{ textAlign: 'left' }}>
                             UPC: {storeItem.item_upc}
                         </Text>
                     </SmallText>
