@@ -22,7 +22,9 @@ const renderActions = (actions) => {
     }
 };
 
-function ItemDetail({ details, actions }) {
+function ItemDetail({ expiryDate, details, actions }) {
+    var displayDate = new Date(expiryDate);
+    displayDate.setHours(displayDate.getHours() + 2);
     return (
         <View style={ItemDetailStyle.container}>
             <View style={ItemDetailStyle.imageContainer}>
@@ -37,6 +39,9 @@ function ItemDetail({ details, actions }) {
                         {details.name}
                     </Text>
                 </LargeText>
+                <MediumText>
+                    <Text>Expiry Date: {displayDate.toDateString()}</Text>
+                </MediumText>
             </View>
             <ScrollView style={ItemDetailStyle.detailsContainer}>
                 <Accordion title="Item Details">
