@@ -67,6 +67,7 @@ class ActionModal extends Component {
                     {Statuses.map((status) => {
                         return (
                             <Picker.Item
+                                key={status.value}
                                 label={status.label}
                                 value={status.value}
                             />
