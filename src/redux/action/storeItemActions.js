@@ -128,27 +128,28 @@ export const resetStoreItemDetails = (storeItemId) => {
 export const addStoreItemAction = (actionDetails) => {
     return (dispatch, getState) => {
         const { auth, storeItem } = getState();
-        console.log(storeItem);
+        console.log('actionDetails', actionDetails);
+        console.log('storeItem', storeItem);
         const newAction = new Action(
             storeItem.storeItemDetails.id,
             auth.user.username,
             actionDetails
         );
-        console.log(newAction);
         const data = new StoreItemAction(
             storeItem.storeItemDetails.id,
             newAction
         );
-        console.log(data);
         dispatch({
             type: ADD_NEW_ACTION_PENDING,
         });
         request('storeitem/item/action', 'post', data)
             .then((response) => {
-                console.log(response);
-                //stop spinner
-                //create new store item
-                //retrieve the storeItemDetails for this item.
+                dispatch(
+                    addNewStoreItem(
+                        response.item_upc,
+                        actionDetails.expiry_date
+                    )
+                );
             })
             .catch((error) => {
                 dispatch({ type: ADD_NEW_ACTION_FAILED, payload: error });
